@@ -1,0 +1,20 @@
+A Joint Optimization of Buffer and Splitter Insertion
+Running Benchmarks:
+['c6288', 'alu32', 'c7552']
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 66.19599986076355 seconds 
+Time in phase assignment 16.322301626205444 
+Time in tree construction 47.61692261695862 
+
+
+
+Parsed Circuit alu32 has gate count 1513
+Solving Initial Levels with 247756 constraints

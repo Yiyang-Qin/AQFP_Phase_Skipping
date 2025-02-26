@@ -1,0 +1,101 @@
+A Joint Optimization of Buffer and Splitter Insertion
+Running Benchmarks:
+['c432', 'c499', 'c880', 'c1355', 'c1908', 'c2670']
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 2 at cost 431
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:431
+Buffers = 355
+Splitters = 76
+Total Time: 0.3216867446899414 seconds 
+Time in phase assignment 0.04722428321838379 
+Time in tree construction 0.2625863552093506 
+
+
+
+Parsed Circuit c499 has gate count 387
+Solving Initial Levels with 7709 constraints
+No Improvement Found in Iteration 3 at cost 667
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:667
+Buffers = 412
+Splitters = 255
+Total Time: 1.6191856861114502 seconds 
+Time in phase assignment 0.11463069915771484 
+Time in tree construction 1.4751982688903809 
+
+
+
+Parsed Circuit c880 has gate count 306
+Solving Initial Levels with 6004 constraints
+No Improvement Found in Iteration 3 at cost 742
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:742
+Buffers = 554
+Splitters = 188
+Total Time: 0.9702017307281494 seconds 
+Time in phase assignment 0.08712124824523926 
+Time in tree construction 0.8622450828552246 
+
+
+
+Parsed Circuit c1355 has gate count 389
+Solving Initial Levels with 7983 constraints
+No Improvement Found in Iteration 4 at cost 667
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:667
+Buffers = 406
+Splitters = 261
+Total Time: 2.1381726264953613 seconds 
+Time in phase assignment 0.15688514709472656 
+Time in tree construction 1.9356541633605957 
+
+
+
+Parsed Circuit c1908 has gate count 289
+Solving Initial Levels with 25289 constraints
+No Improvement Found in Iteration 2 at cost 660
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:660
+Buffers = 469
+Splitters = 191
+Total Time: 1.329002857208252 seconds 
+Time in phase assignment 0.15582799911499023 
+Time in tree construction 1.119157314300537 
+
+
+
+Parsed Circuit c2670 has gate count 368
+Solving Initial Levels with 89357 constraints
+No Improvement Found in Iteration 2 at cost 912
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:912
+Buffers = 716
+Splitters = 196
+Total Time: 4.249894142150879 seconds 
+Time in phase assignment 1.8446588516235352 
+Time in tree construction 2.1088650226593018 
+
+
+Parameters
+Phases:8
+Maximum Phase Skips:1
+Splitter Fanout Limit:4
+
+
+Summary of Results
+Benchmark | Total Buffer/Splitter Cost
+c432  |  418
+c499  |  667
+c880  |  739
+c1355  |  667
+c1908  |  657
+c2670  |  904
