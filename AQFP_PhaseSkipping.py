@@ -624,6 +624,43 @@ def less(cost,cost_min):
         return True
     else:
         return False
+
+import matplotlib.pyplot as plt
+from collections import Counter
+import random
+
+def analyze_fanout_distribution(ntk):
+    fanout_lengths = [len(n.fanouts) for n in ntk.netlist]
+
+    # Print basic statistics
+    print("Fanout Distribution Statistics:")
+    print(f"Total Nodes: {len(fanout_lengths)}")
+    print(f"Max Fanouts: {max(fanout_lengths)}")
+    print(f"Min Fanouts: {min(fanout_lengths)}")
+    print(f"Average Fanouts: {sum(fanout_lengths) / len(fanout_lengths):.2f}")
+
+    # Count occurrences of each fanout length
+    fanout_counts = Counter(fanout_lengths)
+
+    # Sort keys for plotting
+    keys = sorted(fanout_counts.keys())
+    values = [fanout_counts[k] for k in keys]
+
+    # Plot histogram
+    plt.figure(figsize=(10, 5))
+    plt.bar(keys, values, width=0.8, color='blue', alpha=0.7)
+    plt.xlabel("Number of Fanouts")
+    plt.ylabel("Number of Nodes")
+    plt.title("Distribution of Fanout Counts in Netlist")
+    plt.xticks(keys)
+    plt.grid(axis='y', linestyle='--', alpha=0.6)
+
+    plt.show()
+
+# Call this function after loading the netlist
+# Example usage:
+# analyze_fanout_distribution(your_ntk_object)
+
 def Resolve_Fanouts(ntk,K,init,skip):
     # print("-------------------------Resolve_Fanouts called------------------------------")
     Estimated_cost = 0
@@ -631,25 +668,36 @@ def Resolve_Fanouts(ntk,K,init,skip):
     if (init==0):
         for n in ntk.netlist:
             n.Find_Slack(skip)
-        # ntk.deleteSplitters()
+        ntk.deleteSplitters()
 
-    fanout_threshold = 4
-    for n in ntk.netlist:
-        if len(n.fanouts) >= fanout_threshold:
-            # ntk.deleteTree(n)
-            for s in n.splitter_out:
-                ntk.deleteTree(s)
+    ###--------------------------VERSION1:50% chance of deletion until reach threshold------------------------------###
+    # num_splitters_threshold = int(0.5*len(ntk.splitters))
+    # for n in ntk.netlist:
+    #     if random.random() < 0.5: # 50% probability
+    #         for s in n.splitter_out:
+    #             ntk.deleteTree(s)
+    #         if len(ntk.splitters) < num_splitters_threshold:
+    #             break
 
-    for i in ntk.netlist:
-        if i.name == "n54":
-            print("fanouts length: ", len(i.fanouts))
-            print("splitter_in:")
-            for j in i.splitter_in:
-                if j != 0:
-                    print(j.name)
-            print("splitter_out:")
-            for j in i.splitter_out:
-                print(j.name)
+    ###--------------------------VERSION2:random shuffle deletion until reach threshold------------------------------###
+    # num_splitters_threshold = int(0.75 * len(ntk.splitters))
+    # # Shuffle netlist to process nodes in random order
+    # randomized_netlist = random.sample(ntk.netlist, len(ntk.netlist))
+    # for n in randomized_netlist:
+    #     for s in n.splitter_out:
+    #         ntk.deleteTree(s)
+    #     if len(ntk.splitters) < num_splitters_threshold:
+    #         break
+
+    ###--------------------------VERSION3:delete node with fanouts < percentils------------------------------###
+    # fanout_lengths = sorted([len(n.fanouts) for n in ntk.netlist])
+    # fanout_threshold = numpy.percentile(fanout_lengths, 95)
+    # print("fanout_threshold = ", fanout_threshold)
+    # # fanout_threshold = 6
+    # for n in ntk.netlist:
+    #     if len(n.fanouts) <= fanout_threshold:
+    #         for s in n.splitter_out:
+    #             ntk.deleteTree(s)
 
     for n in ntk.netlist:
         if not n.splitter_out:
@@ -865,6 +913,10 @@ def Algorithm(name,fanout,phase_overlaps,phases):
     phase_time +=Formulate_init_CPLEX(circ,phase_overlaps,fanout)
     best_cost,buff_cost =Read_Solution_CPLEX(circ,phase_overlaps)
     circ.phases = phases
+    Print_Fanout_Flag = 0 # set when generating the fanouts distribution plot
+    if Print_Fanout_Flag:
+        analyze_fanout_distribution(circ)
+        return circ, 0
     tree_time+=Resolve_Fanouts(circ,fanout,1,phase_overlaps)
     phase_time+=Formulate_CPLEX(circ,phase_overlaps)
     for n in circ.netlist:
@@ -877,16 +929,6 @@ def Algorithm(name,fanout,phase_overlaps,phases):
         for n in circ.netlist:
             n.Find_Slack(phase_overlaps)
 
-        # for i in circ.netlist:
-        #     if i.name == "n54":
-        #         print("fanouts length: ", len(i.fanouts))
-        #         print("splitter_in:")
-        #         for j in i.splitter_in:
-        #             if j != 0:
-        #                 print(j.name)
-        #         print("inputs:")
-        #         for j in i.inputs:
-        #             print(j.name)
         tree_time+=Resolve_Fanouts(circ,fanout,0,phase_overlaps)
 
         phase_time+=Formulate_CPLEX(circ,phase_overlaps)
@@ -897,17 +939,6 @@ def Algorithm(name,fanout,phase_overlaps,phases):
             cost = 0
         else:
             print("No Improvement Found in Iteration "+str(iteration) + " at cost "+str(cost))
-
-            # for i in circ.netlist:
-            #     if i.name == "n54":
-            #         print("fanouts length: ", len(i.fanouts))
-            #         print("splitter_in:")
-            #         for j in i.splitter_in:
-            #             if j != 0:
-            #                 print(j.name)
-            #         print("inputs:")
-            #         for j in i.inputs:
-            #             print(j.name)
 
             circ.CleanNtk()
             print("Inserting Buffers")
@@ -948,8 +979,9 @@ def file_to_string(path):
 
 
 ##############Modify HERE##########
-Benchmarks = ["c432","c499","c880","c1355","c1908","c2670"]
-# Benchmarks = ["c432"]
+# Benchmarks = ["c432","c499","c880","c1355","c1908","c2670"]
+# Benchmarks = ["c6288", "alu32", "c7552"]
+Benchmarks = ["c7552"]
 Splitter_Fanout = 4
 Phase_Skips = 1
 Phases  = 8

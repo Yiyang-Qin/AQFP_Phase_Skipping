@@ -1,0 +1,28 @@
+A Joint Optimization of Buffer and Splitter Insertion
+Running Benchmarks:
+['c6288']
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold =  2.0
+fanout_threshold =  2.0
+No Improvement Found in Iteration 2 at cost 4776
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4776
+Buffers = 3064
+Splitters = 1712
+Total Time: 44.798678159713745 seconds 
+Time in phase assignment 14.796405553817749 
+Time in tree construction 28.380971670150757 
+
+
+Parameters
+Phases:8
+Maximum Phase Skips:1
+Splitter Fanout Limit:4
+
+
+Summary of Results
+Benchmark | Total Buffer/Splitter Cost
+c6288  |  4776

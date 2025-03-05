@@ -1,0 +1,78 @@
+A Joint Optimization of Buffer and Splitter Insertion
+Running Benchmarks:
+['c7552']
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 7 at cost 3317
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3317
+Buffers = 2428
+Splitters = 889
+Total Time: 781.0510182380676 seconds 
+Time in phase assignment 7.193349838256836 
+Time in tree construction 771.7112784385681 
+
+
+Parameters
+Phases:8
+Maximum Phase Skips:1
+Splitter Fanout Limit:4
+
+
+Summary of Results
+Benchmark | Total Buffer/Splitter Cost
+c7552  |  3315
+A Joint Optimization of Buffer and Splitter Insertion
+Running Benchmarks:
+['c7552']
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 6 at cost 3320
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3320
+Buffers = 2433
+Splitters = 887
+Total Time: 674.8838829994202 seconds 
+Time in phase assignment 7.4492316246032715 
+Time in tree construction 666.9586522579193 
+
+
+Parameters
+Phases:8
+Maximum Phase Skips:1
+Splitter Fanout Limit:4
+
+
+Summary of Results
+Benchmark | Total Buffer/Splitter Cost
+c7552  |  3320
+A Joint Optimization of Buffer and Splitter Insertion
+Running Benchmarks:
+['c7552']
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 6 at cost 3310
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3310
+Buffers = 2428
+Splitters = 882
+Total Time: 753.0403485298157 seconds 
+Time in phase assignment 8.529725313186646 
+Time in tree construction 743.9753353595734 
+
+
+Parameters
+Phases:8
+Maximum Phase Skips:1
+Splitter Fanout Limit:4
+
+
+Summary of Results
+Benchmark | Total Buffer/Splitter Cost
+c7552  |  3310

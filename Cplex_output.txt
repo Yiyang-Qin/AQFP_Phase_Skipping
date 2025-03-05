@@ -1,29 +1,47 @@
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
 CPXPARAM_TimeLimit                               600
-Parallel mode: deterministic, using up to 4 threads for concurrent optimization:
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
  * Starting dual Simplex on 1 thread...
- * Starting Barrier on 3 threads...
+ * Starting Barrier on 4 threads...
+ * Starting primal Simplex on 1 thread...
 Tried aggregator 1 time.
-LP Presolve eliminated 1496 rows and 157 columns.
-Aggregator did 60 substitutions.
-Reduced LP has 1819 rows, 1539 columns, and 4484 nonzeros.
-Presolve time = 0.00 sec. (2.84 ticks)
+LP Presolve eliminated 4206 rows and 208 columns.
+Aggregator did 108 substitutions.
+Reduced LP has 7335 rows, 6055 columns, and 18241 nonzeros.
+Presolve time = 0.01 sec. (10.84 ticks)
+Symmetry aggregator did 1836 additional substitutions.
 
 Iteration log . . .
 Iteration:     1   Dual objective     =             0.000000
 Perturbation started.
 Iteration:   101   Dual objective     =             0.000000
-Iteration:   249   Dual objective     =             0.000645
-Iteration:   403   Dual objective     =             0.001038
-Iteration:   549   Dual objective     =           200.502045
-Iteration:   666   Dual objective     =           351.002244
-Iteration:   799   Dual objective     =           510.002698
-Iteration:   945   Dual objective     =           649.502853
+Iteration:   367   Dual objective     =             0.001969
+Iteration:   611   Dual objective     =             0.005721
+Iteration:   900   Dual objective     =             0.010082
+Iteration:  1119   Dual objective     =             9.012990
+Iteration:  1399   Dual objective     =            37.513252
+Iteration:  1646   Dual objective     =            98.013063
+Iteration:  1958   Dual objective     =            98.014480
+Iteration:  2192   Dual objective     =          1109.013951
+Iteration:  2412   Dual objective     =          1291.015370
+Iteration:  2650   Dual objective     =          1749.023006
+Iteration:  2874   Dual objective     =          1938.022633
+Iteration:  3108   Dual objective     =          2132.022308
+Iteration:  3313   Dual objective     =          2200.522048
+Iteration:  3525   Dual objective     =          2230.522773
+Iteration:  3720   Dual objective     =          2289.023187
 Removing perturbation.
 
-Dual simplex solved model.
+Dual crossover.
+  Dual:  Fixing 209 variables.
+      208 DMoves:  Infeasibility  0.00000000e+00  Objective  2.29150000e+03
+        0 DMoves:  Infeasibility  0.00000000e+00  Objective  2.29150000e+03
+  Dual:  Pushed 97, exchanged 112.
+  Primal:  Fixed no variables.
+
+Barrier solved model.
 
 Solution status = Optimal
-Solution value  = 666
+Solution value  = 2291.5
 Maximum bound violation = 0
-Solution RunTime:0
+Solution RunTime:1
