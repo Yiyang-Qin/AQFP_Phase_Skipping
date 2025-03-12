@@ -1,0 +1,151 @@
+Running AQFP Optimization 10 times...
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 3 at cost 416
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:416
+Buffers = 343
+Splitters = 73
+Total Time: 0.47125816345214844 seconds 
+Time in phase assignment 0.05943036079406738 
+Time in tree construction 0.39853644371032715 
+
+
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 3 at cost 416
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:416
+Buffers = 343
+Splitters = 73
+Total Time: 0.474794864654541 seconds 
+Time in phase assignment 0.0644371509552002 
+Time in tree construction 0.3988916873931885 
+
+
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 3 at cost 416
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:416
+Buffers = 343
+Splitters = 73
+Total Time: 0.4724109172821045 seconds 
+Time in phase assignment 0.06384968757629395 
+Time in tree construction 0.3977367877960205 
+
+
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 3 at cost 416
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:416
+Buffers = 343
+Splitters = 73
+Total Time: 0.473513126373291 seconds 
+Time in phase assignment 0.0653533935546875 
+Time in tree construction 0.39714550971984863 
+
+
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 3 at cost 416
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:416
+Buffers = 343
+Splitters = 73
+Total Time: 0.4561736583709717 seconds 
+Time in phase assignment 0.06015801429748535 
+Time in tree construction 0.3851504325866699 
+
+
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 3 at cost 416
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:416
+Buffers = 343
+Splitters = 73
+Total Time: 0.4594554901123047 seconds 
+Time in phase assignment 0.06109786033630371 
+Time in tree construction 0.38660407066345215 
+
+
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 3 at cost 416
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:416
+Buffers = 343
+Splitters = 73
+Total Time: 0.47250890731811523 seconds 
+Time in phase assignment 0.06911063194274902 
+Time in tree construction 0.3922586441040039 
+
+
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 3 at cost 416
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:416
+Buffers = 343
+Splitters = 73
+Total Time: 0.467742919921875 seconds 
+Time in phase assignment 0.05956768989562988 
+Time in tree construction 0.39705991744995117 
+
+
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 3 at cost 416
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:416
+Buffers = 343
+Splitters = 73
+Total Time: 0.4688084125518799 seconds 
+Time in phase assignment 0.06078314781188965 
+Time in tree construction 0.39684224128723145 
+
+
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 3 at cost 416
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:416
+Buffers = 343
+Splitters = 73
+Total Time: 0.4628713130950928 seconds 
+Time in phase assignment 0.060693979263305664 
+Time in tree construction 0.3904383182525635 
+
+
+
+Costs from all runs:
+[416, 416, 416, 416, 416, 416, 416, 416, 416, 416]
+['0.471', '0.475', '0.472', '0.474', '0.456', '0.459', '0.473', '0.468', '0.469', '0.463']
+[3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+
+Final Statistics:
+Average Cost: 416.00, Variance: 0.0000
+Average Time: 0.47 seconds, Variance: 0.0000
+Average Iterations: 3.00, Variance: 0.0000

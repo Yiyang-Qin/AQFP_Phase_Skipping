@@ -1,0 +1,151 @@
+Running AQFP Optimization 10 times...
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 2 at cost 3408
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3408
+Buffers = 2471
+Splitters = 937
+Total Time: 216.22225975990295 seconds 
+Time in phase assignment 6.620222091674805 
+Time in tree construction 209.0559298992157 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 2 at cost 3405
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3405
+Buffers = 2468
+Splitters = 937
+Total Time: 219.71233439445496 seconds 
+Time in phase assignment 5.842350721359253 
+Time in tree construction 213.46827936172485 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 2 at cost 3405
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3405
+Buffers = 2463
+Splitters = 942
+Total Time: 225.67026901245117 seconds 
+Time in phase assignment 6.135440826416016 
+Time in tree construction 219.1570122241974 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 2 at cost 3398
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3398
+Buffers = 2462
+Splitters = 936
+Total Time: 216.2648618221283 seconds 
+Time in phase assignment 5.649765729904175 
+Time in tree construction 210.1867060661316 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 2 at cost 3402
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3402
+Buffers = 2466
+Splitters = 936
+Total Time: 222.6452922821045 seconds 
+Time in phase assignment 6.151408672332764 
+Time in tree construction 216.12893176078796 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 2 at cost 3399
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3399
+Buffers = 2461
+Splitters = 938
+Total Time: 226.76291394233704 seconds 
+Time in phase assignment 6.043567419052124 
+Time in tree construction 220.2883369922638 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 2 at cost 3401
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3401
+Buffers = 2463
+Splitters = 938
+Total Time: 223.93349885940552 seconds 
+Time in phase assignment 5.9267051219940186 
+Time in tree construction 217.62128400802612 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 2 at cost 3389
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3389
+Buffers = 2455
+Splitters = 934
+Total Time: 221.2727780342102 seconds 
+Time in phase assignment 5.535216569900513 
+Time in tree construction 215.34487581253052 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 2 at cost 3401
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3401
+Buffers = 2464
+Splitters = 937
+Total Time: 213.66849994659424 seconds 
+Time in phase assignment 5.8067626953125 
+Time in tree construction 207.46280980110168 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+No Improvement Found in Iteration 2 at cost 3404
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3404
+Buffers = 2468
+Splitters = 936
+Total Time: 213.00083899497986 seconds 
+Time in phase assignment 5.838821887969971 
+Time in tree construction 206.78331995010376 
+
+
+
+Costs from all runs:
+[3378, 3372, 3372, 3372, 3378, 3369, 3369, 3369, 3377, 3369]
+['216.222', '219.713', '225.670', '216.265', '222.646', '226.763', '223.934', '221.273', '213.669', '213.001']
+[2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 3372.50, Variance: 13.0500
+Average Time: 219.92 seconds, Variance: 21.9291
+Average Iterations: 2.00, Variance: 0.0000

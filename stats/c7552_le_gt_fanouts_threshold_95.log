@@ -1,0 +1,192 @@
+Running AQFP Optimization 10 times...
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+No Improvement Found in Iteration 4 at cost 3363
+fanout_threshold : >  4.0
+No Improvement Found in Iteration 5 at cost 3389
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3389
+Buffers = 2458
+Splitters = 931
+Total Time: 223.2296118736267 seconds 
+Time in phase assignment 9.762330055236816 
+Time in tree construction 212.92952036857605 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+No Improvement Found in Iteration 3 at cost 3358
+fanout_threshold : >  4.0
+No Improvement Found in Iteration 4 at cost 3394
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3394
+Buffers = 2457
+Splitters = 937
+Total Time: 223.4573974609375 seconds 
+Time in phase assignment 6.9013330936431885 
+Time in tree construction 216.1078760623932 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+No Improvement Found in Iteration 3 at cost 3357
+fanout_threshold : >  4.0
+No Improvement Found in Iteration 4 at cost 3394
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3394
+Buffers = 2459
+Splitters = 935
+Total Time: 211.51729559898376 seconds 
+Time in phase assignment 6.830342769622803 
+Time in tree construction 204.20688223838806 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+No Improvement Found in Iteration 3 at cost 3360
+fanout_threshold : >  4.0
+No Improvement Found in Iteration 4 at cost 3398
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3398
+Buffers = 2458
+Splitters = 940
+Total Time: 206.42917108535767 seconds 
+Time in phase assignment 6.5140814781188965 
+Time in tree construction 199.45648002624512 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+No Improvement Found in Iteration 3 at cost 3357
+fanout_threshold : >  4.0
+No Improvement Found in Iteration 4 at cost 3388
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3388
+Buffers = 2451
+Splitters = 937
+Total Time: 209.62603402137756 seconds 
+Time in phase assignment 6.5137434005737305 
+Time in tree construction 202.68756341934204 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+No Improvement Found in Iteration 3 at cost 3361
+fanout_threshold : >  4.0
+No Improvement Found in Iteration 4 at cost 3393
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3393
+Buffers = 2452
+Splitters = 941
+Total Time: 198.44799280166626 seconds 
+Time in phase assignment 6.157623291015625 
+Time in tree construction 191.87958574295044 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+No Improvement Found in Iteration 3 at cost 3356
+fanout_threshold : >  4.0
+No Improvement Found in Iteration 4 at cost 3392
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3392
+Buffers = 2456
+Splitters = 936
+Total Time: 249.39590430259705 seconds 
+Time in phase assignment 6.5649518966674805 
+Time in tree construction 242.37966442108154 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+No Improvement Found in Iteration 3 at cost 3370
+fanout_threshold : >  4.0
+No Improvement Found in Iteration 4 at cost 3395
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3395
+Buffers = 2458
+Splitters = 937
+Total Time: 234.10366678237915 seconds 
+Time in phase assignment 6.729865074157715 
+Time in tree construction 226.94143557548523 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+No Improvement Found in Iteration 3 at cost 3361
+fanout_threshold : >  4.0
+No Improvement Found in Iteration 4 at cost 3400
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3400
+Buffers = 2462
+Splitters = 938
+Total Time: 225.55395030975342 seconds 
+Time in phase assignment 9.228479623794556 
+Time in tree construction 215.85363674163818 
+
+
+
+Parsed Circuit c7552 has gate count 1394
+Solving Initial Levels with 51644 constraints
+fanout_threshold : <=  4.0
+fanout_threshold : <=  4.0
+No Improvement Found in Iteration 3 at cost 3364
+fanout_threshold : >  4.0
+No Improvement Found in Iteration 4 at cost 3403
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:3403
+Buffers = 2463
+Splitters = 940
+Total Time: 207.35265374183655 seconds 
+Time in phase assignment 8.647456645965576 
+Time in tree construction 198.267902135849 
+
+
+
+Costs from all runs:
+[3363, 3358, 3354, 3360, 3354, 3358, 3356, 3367, 3361, 3364]
+['223.230', '223.458', '211.517', '206.431', '209.626', '198.448', '249.396', '234.104', '225.554', '207.353']
+[5, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+
+Final Statistics:
+Average Cost: 3359.50, Variance: 16.8500
+Average Time: 218.91 seconds, Variance: 209.2560
+Average Iterations: 4.10, Variance: 0.0900

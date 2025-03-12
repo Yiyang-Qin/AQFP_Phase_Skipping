@@ -1,0 +1,151 @@
+Running AQFP Optimization 10 times...
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 68.2650854587555 seconds 
+Time in phase assignment 14.603644132614136 
+Time in tree construction 51.88443994522095 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 64.83912801742554 seconds 
+Time in phase assignment 12.262764692306519 
+Time in tree construction 50.65972113609314 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 64.78124165534973 seconds 
+Time in phase assignment 12.782030820846558 
+Time in tree construction 50.27356839179993 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 64.16177535057068 seconds 
+Time in phase assignment 12.655880451202393 
+Time in tree construction 49.881585121154785 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 64.30849313735962 seconds 
+Time in phase assignment 12.324332475662231 
+Time in tree construction 50.352593421936035 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4784
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4784
+Buffers = 3053
+Splitters = 1731
+Total Time: 63.110066413879395 seconds 
+Time in phase assignment 11.771774768829346 
+Time in tree construction 49.69470810890198 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4778
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4778
+Buffers = 3047
+Splitters = 1731
+Total Time: 65.61127638816833 seconds 
+Time in phase assignment 12.917970418930054 
+Time in tree construction 51.08926486968994 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 62.57820415496826 seconds 
+Time in phase assignment 12.183520317077637 
+Time in tree construction 48.74861526489258 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 63.100483894348145 seconds 
+Time in phase assignment 11.919775485992432 
+Time in tree construction 49.556401014328 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+No Improvement Found in Iteration 2 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 63.70433521270752 seconds 
+Time in phase assignment 11.894703149795532 
+Time in tree construction 50.14041328430176 
+
+
+
+Costs from all runs:
+[4776, 4776, 4776, 4776, 4776, 4775, 4777, 4776, 4776, 4776]
+['68.265', '64.839', '64.781', '64.162', '64.309', '63.110', '65.611', '62.578', '63.101', '63.705']
+[2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 4776.00, Variance: 0.2000
+Average Time: 64.45 seconds, Variance: 2.3942
+Average Iterations: 2.00, Variance: 0.0000

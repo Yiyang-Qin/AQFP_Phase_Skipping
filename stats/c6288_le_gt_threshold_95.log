@@ -1,0 +1,181 @@
+Running AQFP Optimization 10 times...
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold : <=  2.0
+No Improvement Found in Iteration 2 at cost 4776
+fanout_threshold : >  2.0
+No Improvement Found in Iteration 3 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 64.31417870521545 seconds 
+Time in phase assignment 13.137376546859741 
+Time in tree construction 49.45153188705444 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold : <=  2.0
+No Improvement Found in Iteration 2 at cost 4776
+fanout_threshold : >  2.0
+No Improvement Found in Iteration 3 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 62.84220218658447 seconds 
+Time in phase assignment 12.177525520324707 
+Time in tree construction 48.95485043525696 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold : <=  2.0
+No Improvement Found in Iteration 2 at cost 4776
+fanout_threshold : >  2.0
+No Improvement Found in Iteration 3 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 64.85316300392151 seconds 
+Time in phase assignment 13.391594886779785 
+Time in tree construction 49.65250635147095 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold : <=  2.0
+No Improvement Found in Iteration 2 at cost 4775
+fanout_threshold : >  2.0
+No Improvement Found in Iteration 3 at cost 4784
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4784
+Buffers = 3053
+Splitters = 1731
+Total Time: 64.47616338729858 seconds 
+Time in phase assignment 13.179330587387085 
+Time in tree construction 49.550841331481934 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold : <=  2.0
+No Improvement Found in Iteration 2 at cost 4776
+fanout_threshold : >  2.0
+No Improvement Found in Iteration 3 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 63.203282594680786 seconds 
+Time in phase assignment 12.138314485549927 
+Time in tree construction 49.41947150230408 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold : <=  2.0
+No Improvement Found in Iteration 2 at cost 4775
+fanout_threshold : >  2.0
+No Improvement Found in Iteration 3 at cost 4784
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4784
+Buffers = 3053
+Splitters = 1731
+Total Time: 64.45038175582886 seconds 
+Time in phase assignment 12.579572439193726 
+Time in tree construction 49.885915994644165 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold : <=  2.0
+No Improvement Found in Iteration 2 at cost 4776
+fanout_threshold : >  2.0
+No Improvement Found in Iteration 3 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 62.15464115142822 seconds 
+Time in phase assignment 12.011178016662598 
+Time in tree construction 48.48888611793518 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold : <=  2.0
+No Improvement Found in Iteration 2 at cost 4776
+fanout_threshold : >  2.0
+No Improvement Found in Iteration 3 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 63.31930661201477 seconds 
+Time in phase assignment 11.850383996963501 
+Time in tree construction 49.74143958091736 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold : <=  2.0
+No Improvement Found in Iteration 2 at cost 4776
+fanout_threshold : >  2.0
+No Improvement Found in Iteration 3 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 64.9811851978302 seconds 
+Time in phase assignment 14.86254596710205 
+Time in tree construction 48.46725940704346 
+
+
+
+Parsed Circuit c6288 has gate count 1870
+Solving Initial Levels with 546367 constraints
+fanout_threshold : <=  2.0
+No Improvement Found in Iteration 2 at cost 4776
+fanout_threshold : >  2.0
+No Improvement Found in Iteration 3 at cost 4787
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:4787
+Buffers = 3054
+Splitters = 1733
+Total Time: 64.96183681488037 seconds 
+Time in phase assignment 13.79573917388916 
+Time in tree construction 49.47336196899414 
+
+
+
+Costs from all runs:
+[4776, 4776, 4776, 4775, 4776, 4775, 4776, 4776, 4776, 4776]
+['64.314', '62.842', '64.853', '64.476', '63.204', '64.451', '62.155', '63.319', '64.981', '64.962']
+[3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+
+Final Statistics:
+Average Cost: 4775.80, Variance: 0.1600
+Average Time: 63.96 seconds, Variance: 0.8968
+Average Iterations: 3.00, Variance: 0.0000

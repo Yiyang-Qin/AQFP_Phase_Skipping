@@ -1,0 +1,151 @@
+Running AQFP Optimization 10 times...
+
+Parsed Circuit c5315 has gate count 1302
+Solving Initial Levels with 310262 constraints
+No Improvement Found in Iteration 2 at cost 2743
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:2743
+Buffers = 2013
+Splitters = 730
+Total Time: 24.173160076141357 seconds 
+Time in phase assignment 7.365592956542969 
+Time in tree construction 15.427026271820068 
+
+
+
+Parsed Circuit c5315 has gate count 1302
+Solving Initial Levels with 310262 constraints
+No Improvement Found in Iteration 2 at cost 2744
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:2744
+Buffers = 2023
+Splitters = 721
+Total Time: 27.251171112060547 seconds 
+Time in phase assignment 8.383041620254517 
+Time in tree construction 17.277254819869995 
+
+
+
+Parsed Circuit c5315 has gate count 1302
+Solving Initial Levels with 310262 constraints
+No Improvement Found in Iteration 2 at cost 2754
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:2754
+Buffers = 2016
+Splitters = 738
+Total Time: 32.95000743865967 seconds 
+Time in phase assignment 10.3704354763031 
+Time in tree construction 21.394424438476562 
+
+
+
+Parsed Circuit c5315 has gate count 1302
+Solving Initial Levels with 310262 constraints
+No Improvement Found in Iteration 2 at cost 2749
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:2749
+Buffers = 2016
+Splitters = 733
+Total Time: 27.225988626480103 seconds 
+Time in phase assignment 9.418107271194458 
+Time in tree construction 16.148383855819702 
+
+
+
+Parsed Circuit c5315 has gate count 1302
+Solving Initial Levels with 310262 constraints
+No Improvement Found in Iteration 2 at cost 2749
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:2749
+Buffers = 2027
+Splitters = 722
+Total Time: 31.064943313598633 seconds 
+Time in phase assignment 9.193228721618652 
+Time in tree construction 20.547818660736084 
+
+
+
+Parsed Circuit c5315 has gate count 1302
+Solving Initial Levels with 310262 constraints
+No Improvement Found in Iteration 2 at cost 2739
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:2739
+Buffers = 2007
+Splitters = 732
+Total Time: 28.523024082183838 seconds 
+Time in phase assignment 10.506680250167847 
+Time in tree construction 16.72890853881836 
+
+
+
+Parsed Circuit c5315 has gate count 1302
+Solving Initial Levels with 310262 constraints
+No Improvement Found in Iteration 3 at cost 2754
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:2754
+Buffers = 2015
+Splitters = 739
+Total Time: 31.065321445465088 seconds 
+Time in phase assignment 11.051642894744873 
+Time in tree construction 18.569195985794067 
+
+
+
+Parsed Circuit c5315 has gate count 1302
+Solving Initial Levels with 310262 constraints
+No Improvement Found in Iteration 2 at cost 2754
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:2754
+Buffers = 2015
+Splitters = 739
+Total Time: 26.303682804107666 seconds 
+Time in phase assignment 9.920240879058838 
+Time in tree construction 15.124727725982666 
+
+
+
+Parsed Circuit c5315 has gate count 1302
+Solving Initial Levels with 310262 constraints
+No Improvement Found in Iteration 2 at cost 2742
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:2742
+Buffers = 2013
+Splitters = 729
+Total Time: 26.747921466827393 seconds 
+Time in phase assignment 9.59084963798523 
+Time in tree construction 15.923244714736938 
+
+
+
+Parsed Circuit c5315 has gate count 1302
+Solving Initial Levels with 310262 constraints
+No Improvement Found in Iteration 2 at cost 2752
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:2752
+Buffers = 2025
+Splitters = 727
+Total Time: 23.389589309692383 seconds 
+Time in phase assignment 6.935996770858765 
+Time in tree construction 14.982686758041382 
+
+
+
+Costs from all runs:
+[2721, 2739, 2735, 2721, 2744, 2737, 2732, 2730, 2734, 2737]
+['24.173', '27.251', '32.950', '27.226', '31.065', '28.523', '31.065', '26.304', '26.748', '23.390']
+[2, 2, 2, 2, 2, 2, 3, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 2733.00, Variance: 49.2000
+Average Time: 27.87 seconds, Variance: 8.4902
+Average Iterations: 2.10, Variance: 0.0900

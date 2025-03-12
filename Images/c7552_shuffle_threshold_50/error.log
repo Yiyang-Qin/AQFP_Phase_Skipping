@@ -1,0 +1,14 @@
+python3 script.py > stats/c7552_shuffle_threshold_50.log
+Markowitz threshold set to 0.1
+Dual superbasis not built.
+Markowitz threshold set to 0.1
+Markowitz threshold set to 0.1
+Markowitz threshold set to 0.1
+Markowitz threshold set to 0.1
+Markowitz threshold set to 0.1
+Markowitz threshold set to 0.1
+
+(python3:19975): Gtk-WARNING **: 14:26:47.483: Trying to snapshot GtkButton 0x368b1170 without a current allocation
+
+(python3:19975): Gtk-WARNING **: 14:26:47.483: Trying to snapshot GtkButton 0x3684dae0 without a current allocation
+
