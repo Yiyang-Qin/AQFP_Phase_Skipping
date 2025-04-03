@@ -4,7 +4,7 @@ import time
 from AQFP_PhaseSkipping import Algorithm
 
 # Parameters
-Benchmarks = ["c6288"]  # Benchmark to run
+Benchmarks = ["c499"]  # Benchmark to run
 Splitter_Fanout = 4  # Fanout limit
 Phase_Skips = 1  # Maximum phase skips
 Phases = 8  # Number of phases

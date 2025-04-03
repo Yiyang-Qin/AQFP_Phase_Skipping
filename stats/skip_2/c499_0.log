@@ -1,0 +1,12 @@
+Benchmark: c499
+Runs: 10
+Failed Runs: 0
+Costs: [493, 493, 493, 493, 493, 493, 493, 493, 493, 493]
+Times: ['1.207', '1.290', '1.229', '1.235', '1.238', '1.294', '1.319', '1.537', '1.210', '1.207']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 493.00, Variance: 0.0000
+Average Time: 1.28 seconds, Variance: 0.0090
+Average Iterations: 2.00, Variance: 0.0000
+Lowest Cost: 493, Best Iteration: 2

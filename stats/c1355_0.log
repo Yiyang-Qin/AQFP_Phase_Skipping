@@ -1,0 +1,11 @@
+Benchmark: c1355
+Runs: 10
+Costs: [667, 667, 667, 667, 667, 667, 667, 667, 667, 667]
+Times: ['2.261', '2.195', '2.253', '2.203', '2.237', '2.269', '2.216', '2.211', '2.213', '2.272']
+Iterations: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+
+Final Statistics:
+Average Cost: 667.00, Variance: 0.0000
+Average Time: 2.23 seconds, Variance: 0.0007
+Average Iterations: 4.00, Variance: 0.0000
+Lowest Cost: 667, Best Iteration: 4

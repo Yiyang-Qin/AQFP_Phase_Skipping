@@ -1,0 +1,11 @@
+Benchmark: c880
+Runs: 10
+Costs: [739, 739, 739, 739, 739, 739, 739, 739, 739, 739]
+Times: ['1.008', '0.920', '0.968', '0.949', '0.963', '0.939', '0.967', '0.972', '0.990', '0.979']
+Iterations: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+
+Final Statistics:
+Average Cost: 739.00, Variance: 0.0000
+Average Time: 0.97 seconds, Variance: 0.0006
+Average Iterations: 3.00, Variance: 0.0000
+Lowest Cost: 739, Best Iteration: 3

@@ -1,0 +1,11 @@
+Benchmark: mult8
+Runs: 10
+Costs: [879, 879, 879, 879, 879, 879, 879, 879, 879, 879]
+Times: ['1.005', '0.971', '1.033', '1.003', '1.033', '1.007', '1.050', '1.015', '0.994', '0.973']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 879.00, Variance: 0.0000
+Average Time: 1.01 seconds, Variance: 0.0006
+Average Iterations: 2.00, Variance: 0.0000
+Lowest Cost: 879, Best Iteration: 2

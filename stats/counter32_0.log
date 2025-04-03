@@ -1,0 +1,11 @@
+Benchmark: counter32
+Runs: 10
+Costs: [87, 87, 87, 87, 87, 87, 87, 87, 87, 87]
+Times: ['0.051', '0.051', '0.048', '0.057', '0.043', '0.050', '0.046', '0.057', '0.056', '0.051']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 87.00, Variance: 0.0000
+Average Time: 0.05 seconds, Variance: 0.0000
+Average Iterations: 2.00, Variance: 0.0000
+Lowest Cost: 87, Best Iteration: 2

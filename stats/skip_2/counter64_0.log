@@ -1,0 +1,12 @@
+Benchmark: counter64
+Runs: 10
+Failed Runs: 0
+Costs: [143, 143, 143, 143, 143, 143, 143, 143, 143, 143]
+Times: ['0.090', '0.088', '0.102', '0.103', '0.130', '0.094', '0.104', '0.092', '0.108', '0.101']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 143.00, Variance: 0.0000
+Average Time: 0.10 seconds, Variance: 0.0001
+Average Iterations: 2.00, Variance: 0.0000
+Lowest Cost: 143, Best Iteration: 2

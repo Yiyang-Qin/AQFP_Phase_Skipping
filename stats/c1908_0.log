@@ -1,0 +1,11 @@
+Benchmark: c1908
+Runs: 10
+Costs: [657, 657, 657, 657, 657, 657, 657, 657, 657, 657]
+Times: ['1.387', '1.369', '1.404', '1.479', '1.502', '1.425', '1.459', '1.474', '1.374', '1.449']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 657.00, Variance: 0.0000
+Average Time: 1.43 seconds, Variance: 0.0020
+Average Iterations: 2.00, Variance: 0.0000
+Lowest Cost: 657, Best Iteration: 2

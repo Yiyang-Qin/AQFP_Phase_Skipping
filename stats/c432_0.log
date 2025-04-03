@@ -1,0 +1,10 @@
+Benchmark: c432
+Runs: 10
+Costs: [418, 418, 418, 418, 418, 418, 418, 418, 418, 418]
+Times: ['0.366', '0.341', '0.372', '0.372', '0.358', '0.350', '0.356', '0.339', '0.363', '0.378']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 418.00, Variance: 0.0000
+Average Time: 0.36 seconds, Variance: 0.0002
+Average Iterations: 2.00, Variance: 0.0000

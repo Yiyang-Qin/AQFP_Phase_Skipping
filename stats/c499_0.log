@@ -1,0 +1,10 @@
+Benchmark: c499
+Runs: 10
+Costs: [667, 667, 667, 667, 667, 667, 667, 667, 667, 667]
+Times: ['1.701', '1.661', '1.644', '1.705', '1.931', '1.746', '1.675', '1.652', '1.741', '1.687']
+Iterations: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+
+Final Statistics:
+Average Cost: 667.00, Variance: 0.0000
+Average Time: 1.71 seconds, Variance: 0.0063
+Average Iterations: 3.00, Variance: 0.0000

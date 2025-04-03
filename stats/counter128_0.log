@@ -1,0 +1,11 @@
+Benchmark: counter128
+Runs: 10
+Costs: [426, 426, 426, 426, 426, 426, 426, 426, 426, 426]
+Times: ['0.389', '0.405', '0.372', '0.405', '0.411', '0.398', '0.438', '0.390', '0.418', '0.396']
+Iterations: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+
+Final Statistics:
+Average Cost: 426.00, Variance: 0.0000
+Average Time: 0.40 seconds, Variance: 0.0003
+Average Iterations: 4.00, Variance: 0.0000
+Lowest Cost: 426, Best Iteration: 4

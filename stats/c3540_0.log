@@ -1,0 +1,11 @@
+Benchmark: c3540
+Runs: 10
+Costs: [999, 1000, 1000, 1002, 997, 1000, 998, 998, 999, 998]
+Times: ['11.518', '10.364', '10.250', '11.018', '10.497', '10.079', '10.418', '9.997', '9.930', '10.091']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 999.10, Variance: 1.8900
+Average Time: 10.42 seconds, Variance: 0.2244
+Average Iterations: 2.00, Variance: 0.0000
+Lowest Cost: 997, Best Iteration: 2

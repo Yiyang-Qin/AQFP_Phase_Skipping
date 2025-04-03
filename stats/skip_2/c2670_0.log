@@ -1,0 +1,12 @@
+Benchmark: c2670
+Runs: 10
+Failed Runs: 0
+Costs: [587, 604, 598, 589, 591, 598, 599, 610, 598, 591]
+Times: ['3.374', '3.377', '3.358', '3.492', '3.470', '3.392', '3.409', '3.407', '3.479', '3.351']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 596.50, Variance: 45.8500
+Average Time: 3.41 seconds, Variance: 0.0024
+Average Iterations: 2.00, Variance: 0.0000
+Lowest Cost: 587, Best Iteration: 2

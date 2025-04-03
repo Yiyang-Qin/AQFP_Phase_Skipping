@@ -1,0 +1,12 @@
+Benchmark: counter16
+Runs: 10
+Failed Runs: 0
+Costs: [24, 24, 24, 24, 24, 24, 24, 24, 24, 24]
+Times: ['0.033', '0.034', '0.027', '0.038', '0.033', '0.032', '0.032', '0.036', '0.029', '0.053']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 24.00, Variance: 0.0000
+Average Time: 0.03 seconds, Variance: 0.0000
+Average Iterations: 2.00, Variance: 0.0000
+Lowest Cost: 24, Best Iteration: 2

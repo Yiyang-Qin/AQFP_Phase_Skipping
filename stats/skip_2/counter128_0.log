@@ -1,0 +1,12 @@
+Benchmark: counter128
+Runs: 10
+Failed Runs: 0
+Costs: [308, 308, 308, 308, 308, 308, 308, 308, 308, 308]
+Times: ['0.235', '0.253', '0.223', '0.224', '0.237', '0.229', '0.234', '0.208', '0.262', '0.219']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 308.00, Variance: 0.0000
+Average Time: 0.23 seconds, Variance: 0.0002
+Average Iterations: 2.00, Variance: 0.0000
+Lowest Cost: 308, Best Iteration: 2

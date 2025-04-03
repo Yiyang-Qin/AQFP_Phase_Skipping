@@ -1,0 +1,12 @@
+Benchmark: c5315
+Runs: 10
+Failed Runs: 1
+Costs: [1848, 1836, 1839, 1841, 1846, 1843, 1830, 1847, 1834]
+Times: ['29.178', '29.053', '29.131', '28.317', '28.554', '29.086', '30.811', '28.512', '29.227']
+Iterations: [2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+Final Statistics:
+Average Cost: 1840.44, Variance: 34.4691
+Average Time: 29.10 seconds, Variance: 0.4677
+Average Iterations: 2.00, Variance: 0.0000
+Lowest Cost: 1830, Best Iteration: 2

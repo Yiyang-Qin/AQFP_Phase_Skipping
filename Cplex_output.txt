@@ -5,29 +5,43 @@ Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
  * Starting Barrier on 4 threads...
  * Starting primal Simplex on 1 thread...
 Tried aggregator 1 time.
-LP Presolve eliminated 5714 rows and 33 columns.
-Aggregator did 32 substitutions.
-Reduced LP has 10998 rows, 9104 columns, and 27479 nonzeros.
-Presolve time = 0.03 sec. (16.17 ticks)
+LP Presolve eliminated 4448 rows and 208 columns.
+Aggregator did 108 substitutions.
+Reduced LP has 7333 rows, 6023 columns, and 18236 nonzeros.
+Presolve time = 0.02 sec. (10.83 ticks)
+Symmetry aggregator did 1826 additional substitutions.
 
 Iteration log . . .
 Iteration:     1   Dual objective     =             0.000000
 Perturbation started.
 Iteration:   101   Dual objective     =             0.000000
-Iteration:   462   Dual objective     =             0.019199
-Iteration:   729   Dual objective     =             0.037108
-Iteration:  1054   Dual objective     =             0.059834
-Iteration:  1301   Dual objective     =           108.070595
-Iteration:  1481   Dual objective     =           187.573384
-Iteration:  1729   Dual objective     =           261.590077
-Iteration:  1982   Dual objective     =           352.604102
-Iteration:  2196   Dual objective     =           440.497355
-Iteration:  2515   Dual objective     =           567.579865
+Iteration:   373   Dual objective     =             0.002277
+Iteration:   663   Dual objective     =             0.010033
+Iteration:   858   Dual objective     =            14.336577
+Iteration:  1114   Dual objective     =            35.338630
+Iteration:  1355   Dual objective     =            62.674841
+Iteration:  1560   Dual objective     =           161.675021
+Iteration:  1826   Dual objective     =           391.349948
+Iteration:  2066   Dual objective     =           715.682728
+Iteration:  2268   Dual objective     =           823.350668
+Iteration:  2467   Dual objective     =           869.018030
+Iteration:  2684   Dual objective     =          1004.356120
+Iteration:  2878   Dual objective     =          1057.021839
+Iteration:  3112   Dual objective     =          1153.687847
+Iteration:  3334   Dual objective     =          1201.021736
+Iteration:  3518   Dual objective     =          1263.689495
 Removing perturbation.
+
+Dual crossover.
+  Dual:  Fixing 182 variables.
+      181 DMoves:  Infeasibility  2.55351296e-15  Objective  1.26866667e+03
+        0 DMoves:  Infeasibility  2.22044605e-16  Objective  1.26866667e+03
+  Dual:  Pushed 88, exchanged 94.
+  Primal:  Fixed no variables.
 
 Barrier solved model.
 
 Solution status = Optimal
-Solution value  = 2922
+Solution value  = 1268.67
 Maximum bound violation = 0
-Solution RunTime:1
+Solution RunTime:0

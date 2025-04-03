@@ -1,0 +1,12 @@
+Benchmark: mult8
+Runs: 10
+Failed Runs: 0
+Costs: [626, 626, 626, 626, 626, 626, 626, 626, 626, 626]
+Times: ['1.687', '1.647', '1.648', '1.680', '1.666', '1.708', '1.692', '1.638', '1.614', '1.745']
+Iterations: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+
+Final Statistics:
+Average Cost: 626.00, Variance: 0.0000
+Average Time: 1.67 seconds, Variance: 0.0013
+Average Iterations: 4.00, Variance: 0.0000
+Lowest Cost: 626, Best Iteration: 4

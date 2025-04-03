@@ -1,0 +1,12 @@
+Benchmark: c7552
+Runs: 10
+Failed Runs: 0
+Costs: [3372, 3348, 3378, 3345, 3349, 3374, 3355, 3356, 3361, 3375]
+Times: ['327.710', '318.841', '462.408', '330.695', '301.349', '220.643', '301.082', '322.527', '204.880', '430.976']
+Iterations: [4, 5, 4, 7, 6, 4, 5, 5, 5, 4]
+
+Final Statistics:
+Average Cost: 3361.30, Variance: 140.4100
+Average Time: 322.11 seconds, Variance: 5656.2813
+Average Iterations: 4.90, Variance: 0.8900
+Lowest Cost: 3345, Best Iteration: 7

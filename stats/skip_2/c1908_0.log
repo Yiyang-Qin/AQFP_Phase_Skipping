@@ -1,0 +1,12 @@
+Benchmark: c1908
+Runs: 10
+Failed Runs: 0
+Costs: [445, 445, 445, 445, 445, 445, 445, 445, 445, 445]
+Times: ['1.964', '1.979', '1.934', '1.947', '1.990', '1.998', '2.010', '1.950', '2.007', '1.968']
+Iterations: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+
+Final Statistics:
+Average Cost: 445.00, Variance: 0.0000
+Average Time: 1.97 seconds, Variance: 0.0006
+Average Iterations: 3.00, Variance: 0.0000
+Lowest Cost: 445, Best Iteration: 3

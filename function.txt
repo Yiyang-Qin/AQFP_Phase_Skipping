@@ -1,0 +1,79 @@
+def Insert_Buffers(ntk,N):
+    sol_file = "problem_sol.txt"#ntk.name+"_"+str(N)+"_sol.txt"
+    with open(sol_file,'r') as sol:
+        for line in sol:
+            if (line.split()[1][0]=="C"): #calculate cost
+                result = line.split()
+                cost = math.ceil(float(result[2]))
+                #insert cost buffers between the i and j nodes
+                #if not cijk but is cij ignore
+                #if cijk is 0 ignore
+                i = result[1].split('_')[1]
+                j = result[1].split('_')[2]
+                k = result[1].split('_')[2]
+                i_name = i
+                i_first = i_name
+                j_name = j
+                j_first = j_name
+                is_split = 0
+                #while(cost>0):
+                if(k==1):
+                    if "splitter" in i_name and "buf" not in i_name:
+                        i = ntk.splitters[ntk.s_dict[i_name]]
+                    else:
+                        i = ntk.Obj(i_name)
+                else:
+                    i = ntk.Obj("buf_"+i_first+"_"+j_first+"_"+str(k-1))
+
+
+                    if "splitter" in j_name:
+                        j=ntk.splitters[ntk.s_dict[j_name]]
+                    else:
+                        j=ntk.Obj(j_name)
+                    bufName = "buf_"+i_first+"_"+j_first+"_"+str(k)
+                    buf = Node(bufName,"buf",[i],[0])
+                    ntk.add(buf)
+                    j.insertbuf(i,buf)
+                    #buf.depth = i.depth+N
+                    #i = buf
+                    #j_name = j.name
+                    #i_name = i.name
+                    #cost += -1
+                #####if line = D_ijk   find depth and
+                #buf = ntk.Obj("buf_"+i_first+"_"+j_first+"_"+str(k-1))
+                result = line.split()
+                value = math.ceil(float(result[2]))
+                #buf.depth = value
+
+
+
+
+
+
+ERROR:Netlist Check Failed on connection (buf_N7_n10_1,2) -> (n10,5)
+
+    if len(parts) == 4 and int(result[2]) != 0:
+                           ^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '-1.20792e-13'
+
+
+
+
+
+
+# Equation (20) - (24) for netlist nodes
+for n in ntk.netlist:
+    if len(n.splitter_out) == 1:
+        fanout = n.splitter_out[0]
+    elif len(n.fanouts) == 0:
+        continue
+    else:
+        fanout = n.fanouts[0]
+
+
+
+# Equation (20) - (24) for splitters
+for n in ntk.splitters:
+    for fanout in n.fanouts + n.splitter_out:
+        if fanout in n.fanouts and fanout.gate_type == "splitter":
+            continue
