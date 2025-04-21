@@ -1,0 +1,32 @@
+A Joint Optimization of Buffer and Splitter Insertion
+Running Benchmarks:
+['c880']
+
+Parsed Circuit c880 has gate count 306
+Solving Initial Levels with 6004 constraints
+No Improvement Found in Iteration 3 at cost 742
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:742
+Buffers = 554
+Splitters = 188
+Total Time: 1.013927936553955 seconds 
+Time in phase assignment 0.09639596939086914 
+Time in tree construction 0.8972961902618408 
+
+
+{1: 60, 4: 27, 9: 40, 5: 59, 10: 33, 3: 54, 6: 29, 8: 34, 40: 18, 2: 6, 7: 52, 13: 42, 15: 30, 19: 28, 21: 26, 11: 43, 12: 24, 17: 26, 20: 23, 16: 26, 18: 30, 22: 23, 14: 26, 23: 24, 24: 27, 26: 27, 27: 19, 29: 18, 25: 19, 30: 26, 28: 25, 32: 21, 33: 16, 35: 16, 36: 19, 38: 20, 39: 10, 31: 18, 34: 22, 41: 9, 37: 13, 42: 26}
+Total Cells: 1134
+Max Depth: 42
+Max Width: 59
+Average Width per Depth: 27.0
+Number of Primary Inputs: 60
+Parameters
+Phases:8
+Maximum Phase Skips:1
+Splitter Fanout Limit:4
+
+
+Summary of Results
+Benchmark | Total Buffer/Splitter Cost
+c880  |  739

@@ -308,6 +308,106 @@ class Ntk:
             print(n.name + " : " +str(n.depth))
         for s in self.splitters:
             print(s.name + ": " + str(s.depth))
+
+    def Print_info(self):
+
+        total_cells = len(self.netlist) + len(self.splitters)
+        # self.Find_maxDepth()
+        self.maxDepth = 0
+        for gate in self.netlist:
+            if gate.depth > self.maxDepth:
+                self.maxDepth = gate.depth
+
+        max_depth = self.maxDepth
+        widthAtDepth = {}
+        cellsAtDepth = {}
+        gateAtDepth = {}
+        splitterAtDepth = {}
+        bufferAtDepth = {}
+        numOfInputs = 0
+
+        for gate in self.netlist:
+            gate_depth = gate.depth
+            gate_width = len(gate.fanouts)
+            if gate_depth not in widthAtDepth:
+                widthAtDepth[gate_depth] = 0
+                cellsAtDepth[gate_depth] = 0
+                gateAtDepth[gate_depth] = 0
+                splitterAtDepth[gate_depth] = 0
+                bufferAtDepth[gate_depth] = 0
+            widthAtDepth[gate_depth] = max(widthAtDepth[gate_depth], gate_width)
+            cellsAtDepth[gate_depth] += 1
+            if gate_depth not in gateAtDepth:
+                gateAtDepth[gate_depth] = 0
+            if gate.gate_type == "buf":
+                bufferAtDepth[gate_depth] += 1
+            else:
+                gateAtDepth[gate_depth] += 1
+            if gate.gate_type == "PI":
+                numOfInputs = numOfInputs + 1
+
+        for splitter in self.splitters:
+            splitter_depth = splitter.depth
+            splitter_width = len(splitter.fanouts)
+            if splitter_depth not in widthAtDepth:
+                widthAtDepth[splitter_depth] = 0
+                cellsAtDepth[splitter_depth] = 0
+                gateAtDepth[gate_depth] = 0
+                splitterAtDepth[gate_depth] = 0
+                bufferAtDepth[gate_depth] = 0
+            if splitter_depth not in splitterAtDepth:
+                splitterAtDepth[splitter_depth] = 0
+            widthAtDepth[splitter_depth] = max(widthAtDepth[splitter_depth], splitter_width)
+            cellsAtDepth[splitter_depth] += 1
+            splitterAtDepth[splitter_depth] += 1
+
+        if widthAtDepth:
+            # max_width = max(cellsAtDepth.values())
+            max_width = max(v for k, v in cellsAtDepth.items() if k != 1)
+            print(cellsAtDepth)
+            avgWidthPerDepth = sum(cellsAtDepth.values()) / len(cellsAtDepth)
+        else:
+            max_width = 0
+            avgWidthPerDepth = 0
+
+        print(f"Total Cells: {total_cells}")
+        print(f"Max Depth: {max_depth}")
+        print(f"Max Width: {max_width}")
+        print(f"Average Width per Depth: {avgWidthPerDepth}")
+        print(f"Number of Primary Inputs: {numOfInputs}")
+
+        plt.figure(figsize=(12, 6))
+        plt.subplot(2, 2, 1)
+        plt.bar(cellsAtDepth.keys(), cellsAtDepth.values())
+        plt.xlabel('Depth')
+        plt.ylabel('Max Fanout Width at Depth')
+        plt.title('Overall Fanout Width by Depth')
+
+        plt.subplot(2, 2, 2)
+        plt.bar(gateAtDepth.keys(), gateAtDepth.values())
+        plt.xlabel('Depth')
+        plt.ylabel('Max Gate Fanout Width')
+        plt.title('Gate Fanout Width by Depth')
+
+        plt.subplot(2, 2, 3)
+        plt.bar(splitterAtDepth.keys(), splitterAtDepth.values())
+        plt.xlabel('Depth')
+        plt.ylabel('Max Splitter Fanout Width')
+        plt.title('Splitter Fanout Width by Depth')
+
+        plt.subplot(2, 2, 4)
+        if bufferAtDepth:
+            plt.bar(bufferAtDepth.keys(), bufferAtDepth.values())
+            plt.xlabel('Depth')
+            plt.ylabel('Max Buffer Fanout Width')
+            plt.title('Buffer Fanout Width by Depth')
+        else:
+            plt.bar([], [])
+            plt.title('No Buffers')
+
+        plt.tight_layout()
+        plt.show()
+
     def CleanNtk(self):
         for g in self.netlist:
             g.clean_connections()
@@ -350,7 +450,7 @@ import numpy
 
 def Formulate_CPLEX(ntk,N):
     obj_function=[]
-    with open('temp.txt','w') as temp:
+    with open('../temp.txt', 'w') as temp:
         temp.write("Subject To\n")
         for n in ntk.netlist:
             if (n.gate_type =="PI"):
@@ -399,9 +499,9 @@ def Formulate_CPLEX(ntk,N):
                 temp.write(line)
                 line = "D_"+sp.name+" - D_"+s.name+ "- "+str(N)+" "+objfun+" <= "+ str(N)+"\n"
                 temp.write(line)
-    filename = "problem.lp" 
+    filename = "../problem.lp"
     lines = []
-    with open('temp.txt','r') as temp:
+    with open('../temp.txt', 'r') as temp:
         lines = temp.readlines()
     with open(filename,'w') as lp:
         objective = "Minimize\n"
@@ -472,7 +572,7 @@ def Formulate_init_CPLEX(ntk,N,K):
     
     obj_function=[]
     constraints = 0
-    with open('temp.txt','w') as temp:
+    with open('../temp.txt', 'w') as temp:
         temp.write("Subject To\nXNULL=0\n")
         for n in ntk.netlist:
             if (n.gate_type =="PI"):
@@ -507,9 +607,9 @@ def Formulate_init_CPLEX(ntk,N,K):
                             APS_min+=spans[node]+" + "
                         APS_min+="XNULL>= "+str(Smin)+"\n"
                         temp.write(APS_min)
-    filename = "problem.lp" 
+    filename = "../problem.lp"
     lines = []
-    with open('temp.txt','r') as temp:
+    with open('../temp.txt', 'r') as temp:
         lines = temp.readlines()
     with open(filename,'w') as lp:
         objective = "Minimize\n "
@@ -540,7 +640,7 @@ def Formulate_init_CPLEX(ntk,N,K):
 
 def Read_Solution_CPLEX(ntk,N):
     #print(ntk.s_dict)
-    sol_file = "problem_sol.txt"#ntk.name+"_"+str(N)+"_sol.txt"
+    sol_file = "../problem_sol.txt"  #ntk.name+"_"+str(N)+"_sol.txt"
     cost = 0
     buff_cost = 0
     buff_cost2=0
@@ -672,20 +772,20 @@ def Resolve_Fanouts(ntk,K,init,skip):
     if (init==0):
         for n in ntk.netlist:
             n.Find_Slack(skip)
-        # ntk.deleteSplitters()
+        ntk.deleteSplitters()
     ###--------------------------VERSION0:delete tree upon all------------------------------###
         # for n in ntk.netlist:
         #     for s in n.splitter_out:
         #         ntk.deleteTree(s)
 
     ###--------------------------VERSION1:50% chance of deletion until reach threshold------------------------------###
-        num_splitters_threshold = int(0.5*len(ntk.splitters))
-        for n in ntk.netlist:
-            if random.random() < 0.5: # 50% probability
-                for s in n.splitter_out:
-                    ntk.deleteTree(s)
-                if len(ntk.splitters) < num_splitters_threshold:
-                    break
+        # num_splitters_threshold = int(0.5*len(ntk.splitters))
+        # for n in ntk.netlist:
+        #     if random.random() < 0.5: # 50% probability
+        #         for s in n.splitter_out:
+        #             ntk.deleteTree(s)
+        #         if len(ntk.splitters) < num_splitters_threshold:
+        #             break
 
     ###--------------------------VERSION2:random shuffle deletion until reach threshold------------------------------###
         # num_splitters_threshold = int(0.5 * len(ntk.splitters))
@@ -883,7 +983,7 @@ def Insert_Tree_init(ntk,pt,state,root,source, delays):
                     
 
 def Insert_Buffers(ntk,N):
-    sol_file = "problem_sol.txt"#ntk.name+"_"+str(N)+"_sol.txt"
+    sol_file = "../problem_sol.txt"  #ntk.name+"_"+str(N)+"_sol.txt"
     with open(sol_file,'r') as sol:
         for line in sol:
             if (line.split()[1][0]=="C"): #calculate cost
@@ -948,31 +1048,7 @@ def Algorithm(name,fanout,phase_overlaps,phases):
 
     reverse_flag = 0 #set when conducting the reverse-deletion version of Resolve_fanouts
 
-    # while (cost<best_cost):
-    #     for n in circ.netlist:
-    #         n.Find_Slack(phase_overlaps)
-    #
-    #     tree_time+=Resolve_Fanouts(circ,fanout,0,phase_overlaps)
-    #
-    #     phase_time+=Formulate_CPLEX(circ,phase_overlaps)
-    #     cost,buff_cost = Read_Solution_CPLEX(circ,phase_overlaps)
-    #     iteration+=1
-    #     if (cost<best_cost):
-    #         best_cost = cost
-    #         cost = 0
-    #     else:
-    #         print("No Improvement Found in Iteration "+str(iteration) + " at cost "+str(cost))
-    #         if reverse_flag != 1:
-    #             circ.CleanNtk()
-    #             print("Inserting Buffers")
-    #             saved = buff_cost
-    #             Insert_Buffers(circ,phase_overlaps)
-
-    ### jump out of the loop only after no improvement in last given number of loops
-    no_improvement_threshold = 3
-    no_improvement_count = 0
-
-    while 1:
+    while (cost<best_cost):
         for n in circ.netlist:
             n.Find_Slack(phase_overlaps)
 
@@ -981,19 +1057,43 @@ def Algorithm(name,fanout,phase_overlaps,phases):
         phase_time+=Formulate_CPLEX(circ,phase_overlaps)
         cost,buff_cost = Read_Solution_CPLEX(circ,phase_overlaps)
         iteration+=1
-        if cost<best_cost:
+        if (cost<best_cost):
             best_cost = cost
             cost = 0
-            no_improvement_count = 0
         else:
-            no_improvement_count += 1
             print("No Improvement Found in Iteration "+str(iteration) + " at cost "+str(cost))
-            if no_improvement_count >= no_improvement_threshold:
-                if reverse_flag != 1:
-                    circ.CleanNtk()
-                    print("Inserting Buffers")
-                    Insert_Buffers(circ,phase_overlaps)
-                break
+            if reverse_flag != 1:
+                circ.CleanNtk()
+                print("Inserting Buffers")
+                saved = buff_cost
+                Insert_Buffers(circ,phase_overlaps)
+
+    # ### jump out of the loop only after no improvement in last given number of loops
+    # no_improvement_threshold = 3
+    # no_improvement_count = 0
+    #
+    # while 1:
+    #     for n in circ.netlist:
+    #         n.Find_Slack(phase_overlaps)
+    #
+    #     tree_time+=Resolve_Fanouts(circ,fanout,0,phase_overlaps)
+    #
+    #     phase_time+=Formulate_CPLEX(circ,phase_overlaps)
+    #     cost,buff_cost = Read_Solution_CPLEX(circ,phase_overlaps)
+    #     iteration+=1
+    #     if cost<best_cost:
+    #         best_cost = cost
+    #         cost = 0
+    #         no_improvement_count = 0
+    #     else:
+    #         no_improvement_count += 1
+    #         print("No Improvement Found in Iteration "+str(iteration) + " at cost "+str(cost))
+    #         if no_improvement_count >= no_improvement_threshold:
+    #             if reverse_flag != 1:
+    #                 circ.CleanNtk()
+    #                 print("Inserting Buffers")
+    #                 Insert_Buffers(circ,phase_overlaps)
+    #             break
 
     if reverse_flag == 1:
         cost = 0
@@ -1023,6 +1123,7 @@ def Algorithm(name,fanout,phase_overlaps,phases):
     print("Time in tree construction %s \n\n" % (tree_time))
     if (not test):
         cost = 10000000
+    circ.Print_info()
     return circ,best_cost,iteration
 def Run_Benchmarks(Names,fanout_limit,phase_skips,phases):
     Results =[]
@@ -1051,7 +1152,7 @@ if __name__ == "__main__":
     ##############Modify HERE##########
     # Benchmarks = ["c432","c499","c880","c1355","c1908","c2670"]
     # Benchmarks = ["c6288", "alu32", "c7552"]
-    Benchmarks = ["c7552"]
+    Benchmarks = ["c2670"]
     Splitter_Fanout = 4
     Phase_Skips = 1
     Phases  = 8
