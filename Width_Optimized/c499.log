@@ -1,0 +1,18 @@
+Parsed Circuit c499 has gate count 387
+Solving Initial Levels with 7709 constraints
+Loutputs: 33
+Initial Cost: 1225
+No Improvement Found in Iteration 2 at cost 1238
+Network is Appropriately Balanced
+Recovered Inserted Cost:1186
+Buffers = 974
+Splitters = 212
+Total Time: 1206.2883040904999 seconds 
+Time in phase assignment 1203.9676456451416 
+Time in tree construction 0.21226096153259277 
+{1: 41, 7: 56, 8: 56, 4: 56, 5: 55, 10: 56, 11: 50, 13: 54, 14: 50, 6: 56, 3: 53, 9: 53, 16: 45, 17: 48, 12: 52, 19: 49, 15: 53, 18: 45, 20: 48, 21: 53, 22: 41, 24: 51, 26: 52, 28: 56, 31: 50, 32: 32, 30: 56, 23: 50, 25: 52, 27: 54, 29: 56, 33: 32, 2: 35}
+Total Cells: 1646
+Max Depth: 33
+Max Width: 56
+Average Width per Depth: 49.878787878787875
+Number of Primary Inputs: 41

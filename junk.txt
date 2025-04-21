@@ -1,9 +1,16 @@
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
 CPXPARAM_TimeLimit                               600
+Presolve has eliminated 203888 rows and 697334 columns...
+Presolve has improved bounds 1093993 times...
 Tried aggregator 2 times.
-MIP Presolve eliminated 48585 rows and 121323 columns.
-MIP Presolve modified 103190 coefficients.
-Aggregator did 1910 substitutions.
-Reduced MIP has 104385 rows, 288012 columns, and 761476 nonzeros.
-Reduced MIP has 272615 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.73 sec. (1171.40 ticks)
+MIP Presolve eliminated 204092 rows and 699568 columns.
+MIP Presolve modified 962869 coefficients.
+Aggregator did 2010 substitutions.
+Reduced MIP has 423255 rows, 2104844 columns, and 6541165 nonzeros.
+Reduced MIP has 2043559 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 11.31 sec. (18095.77 ticks)
+Elapsed time = 11.70 sec. (10000.62 ticks) for 2% of probing (1949 vars fixed)
+Elapsed time = 32.77 sec. (20000.64 ticks) for 4% of probing (24105 vars fixed)
+Elapsed time = 40.83 sec. (30004.81 ticks) for 7% of probing (27368 vars fixed)
+Elapsed time = 52.43 sec. (40009.65 ticks) for 10% of probing (32866 vars fixed)
+Elapsed time = 62.64 sec. (50011.99 ticks) for 15% of probing (41286 vars fixed)
