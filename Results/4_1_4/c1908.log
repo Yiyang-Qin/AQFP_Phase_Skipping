@@ -1,0 +1,32 @@
+A Joint Optimization of Buffer and Splitter Insertion
+Running Benchmarks:
+['c1908']
+
+Parsed Circuit c1908 has gate count 289
+Solving Initial Levels with 25289 constraints
+No Improvement Found in Iteration 3 at cost 1254
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:1254
+Buffers = 1065
+Splitters = 189
+Total Time: 2.160811185836792 seconds 
+Time in phase assignment 0.20431232452392578 
+Time in tree construction 1.8823628425598145 
+
+
+{1: 33, 16: 46, 18: 50, 4: 48, 5: 48, 7: 57, 8: 50, 6: 57, 3: 43, 9: 53, 10: 51, 12: 47, 13: 46, 15: 46, 20: 49, 21: 47, 23: 47, 11: 46, 14: 43, 19: 50, 17: 48, 22: 46, 25: 45, 27: 44, 31: 46, 32: 37, 24: 46, 29: 50, 30: 51, 26: 44, 33: 32, 34: 28, 35: 25, 36: 25, 2: 33, 28: 44}
+Total Cells: 1601
+Max Depth: 36
+Max Width: 57
+Average Width per Depth: 44.47222222222222
+Number of Primary Inputs: 33
+Parameters
+Phases:4
+Maximum Phase Skips:0
+Splitter Fanout Limit:4
+
+
+Summary of Results
+Benchmark | Total Buffer/Splitter Cost
+c1908  |  1254

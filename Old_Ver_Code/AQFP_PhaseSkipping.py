@@ -406,7 +406,10 @@ class Ntk:
             plt.title('No Buffers')
 
         plt.tight_layout()
-        plt.show()
+        # plt.show()
+
+        plt.savefig(f'Results/4_1_4/{self.name}.png')  # Save the figure
+        plt.close()
 
     def CleanNtk(self):
         for g in self.netlist:
@@ -1152,10 +1155,10 @@ if __name__ == "__main__":
     ##############Modify HERE##########
     # Benchmarks = ["c432","c499","c880","c1355","c1908","c2670"]
     # Benchmarks = ["c6288", "alu32", "c7552"]
-    Benchmarks = ["c2670"]
+    Benchmarks = ["c1908"]
     Splitter_Fanout = 4
-    Phase_Skips = 1
-    Phases  = 8
+    Phase_Skips = 0
+    Phases  = 4
     ##############
     print("A Joint Optimization of Buffer and Splitter Insertion")
     print("Running Benchmarks:")

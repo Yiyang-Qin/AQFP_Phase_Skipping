@@ -1,0 +1,32 @@
+A Joint Optimization of Buffer and Splitter Insertion
+Running Benchmarks:
+['c432']
+
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+No Improvement Found in Iteration 2 at cost 832
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:832
+Buffers = 759
+Splitters = 73
+Total Time: 0.43940162658691406 seconds 
+Time in phase assignment 0.1459667682647705 
+Time in tree construction 0.27908992767333984 
+
+
+{1: 36, 5: 40, 6: 39, 7: 38, 4: 41, 3: 36, 8: 37, 11: 35, 12: 28, 14: 36, 15: 32, 16: 30, 10: 38, 13: 30, 17: 29, 20: 27, 21: 20, 25: 24, 19: 30, 24: 26, 26: 22, 23: 23, 22: 20, 27: 21, 29: 22, 30: 19, 33: 13, 31: 12, 35: 12, 37: 9, 38: 7, 36: 10, 34: 12, 39: 7, 2: 36, 9: 37, 18: 29, 32: 12, 28: 21}
+Total Cells: 996
+Max Depth: 39
+Max Width: 41
+Average Width per Depth: 25.53846153846154
+Number of Primary Inputs: 36
+Parameters
+Phases:4
+Maximum Phase Skips:0
+Splitter Fanout Limit:4
+
+
+Summary of Results
+Benchmark | Total Buffer/Splitter Cost
+c432  |  832

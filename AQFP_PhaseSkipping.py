@@ -556,35 +556,35 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
             for i in range(1, Loutputs + 1):
                 temp.write(f"W_{i} >= 0\n")
                 width_constraint = " + ".join([f"X_{n.name}_{i}" for n in ntk.netlist + ntk.splitters])
-                # width_constraint_buffer = ""
-                # for n in ntk.netlist:
-                #     if len(n.splitter_out) == 1:
-                #         fanout = n.splitter_out[0]
-                #     elif len(n.fanouts) == 0:
-                #         continue
-                #     else:
-                #         fanout = n.fanouts[0]
-                #     # ignore cases where level <= ASAP[i] or level > ALAP[j] to reduce complexity
-                #     if i <= ASAP[n.name] or i > ALAP[fanout.name]:
-                #         continue
-                #     edge = (n.name, fanout.name)
-                #     max_k = k_max[edge]
-                #     for k in range(1, max_k + 1):
-                #         width_constraint_buffer += f" + X_{n.name}_{fanout.name}_{k}_{i}"
-                #
-                # for n in ntk.splitters:
-                #     for fanout in n.fanouts + n.splitter_out:
-                #         if fanout in n.fanouts and fanout.gate_type == "splitter":
-                #             continue
-                #         # ignore cases where level <= ASAP[i] or level > ALAP[j] to reduce complexity
-                #         if i <= ASAP[n.name] or i > ALAP[fanout.name]:
-                #             continue
-                #         edge = (n.name, fanout.name)
-                #         max_k = k_max[edge]
-                #         for k in range(1, max_k + 1):
-                #             width_constraint_buffer += f" + X_{n.name}_{fanout.name}_{k}_{i}"
-                #
-                # width_constraint += width_constraint_buffer
+                width_constraint_buffer = ""
+                for n in ntk.netlist:
+                    if len(n.splitter_out) == 1:
+                        fanout = n.splitter_out[0]
+                    elif len(n.fanouts) == 0:
+                        continue
+                    else:
+                        fanout = n.fanouts[0]
+                    # ignore cases where level <= ASAP[i] or level > ALAP[j] to reduce complexity
+                    if i <= ASAP[n.name] or i > ALAP[fanout.name]:
+                        continue
+                    edge = (n.name, fanout.name)
+                    max_k = k_max[edge]
+                    for k in range(1, max_k + 1):
+                        width_constraint_buffer += f" + X_{n.name}_{fanout.name}_{k}_{i}"
+
+                for n in ntk.splitters:
+                    for fanout in n.fanouts + n.splitter_out:
+                        if fanout in n.fanouts and fanout.gate_type == "splitter":
+                            continue
+                        # ignore cases where level <= ASAP[i] or level > ALAP[j] to reduce complexity
+                        if i <= ASAP[n.name] or i > ALAP[fanout.name]:
+                            continue
+                        edge = (n.name, fanout.name)
+                        max_k = k_max[edge]
+                        for k in range(1, max_k + 1):
+                            width_constraint_buffer += f" + X_{n.name}_{fanout.name}_{k}_{i}"
+
+                width_constraint += width_constraint_buffer
                 temp.write(f"{width_constraint} - W_{i} = 0\n")
             # Equation (6)
             for n in ntk.netlist + ntk.splitters:
@@ -1426,7 +1426,7 @@ def Run_Benchmarks():
     Phase4=[]
     NPhase=[]
     
-    circuit = "c2670"
+    circuit = "c17"
     circ4,cost4,s1,s2,s3,s4 = Algorithm(circuit,4,2,8)
     Phase4.append((cost4,circuit,s1,s2,s3,s4))
     exit()
