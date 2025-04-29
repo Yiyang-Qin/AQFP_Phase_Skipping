@@ -1,0 +1,19 @@
+Parsed Circuit c17 has gate count 6
+Solving Initial Levels with 72 constraints
+Loutputs: 10
+Initial Cost: 18
+No Improvement Found in Iteration 2 at cost 18
+Network is Appropriately Balanced
+Recovered Inserted Cost:18
+Buffers = 15
+Splitters = 3
+Total Time: 0.2298436164855957 seconds 
+Time in phase assignment 0.22402405738830566 
+Time in tree construction 0.0 
+{1: 5, 3: 2.33, 4: 2.33, 6: 2.33, 7: 1.33, 5: 2.0, 8: 2, 2: 1.67}
+Width from Solution: 7.00
+Total Cells: 31
+Max Depth: 8
+Max Width: 2.33
+Average Width per Depth: 2.38
+Number of Primary Inputs: 5

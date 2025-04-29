@@ -1,0 +1,19 @@
+Parsed Circuit c1908 has gate count 289
+Solving Initial Levels with 25289 constraints
+Loutputs: 39
+Initial Cost: 2221
+No Improvement Found in Iteration 2 at cost 2237
+Network is Appropriately Balanced
+Recovered Inserted Cost:2115
+Buffers = 1957
+Splitters = 158
+Total Time: 1208.5686972141266 seconds 
+Time in phase assignment 1205.9319031238556 
+Time in tree construction 0.26674699783325195 
+{1: 33, 4: 29.0, 20: 30.33, 6: 32.0, 7: 36.33, 9: 36.0, 10: 32.0, 8: 37.33, 5: 32.0, 11: 34.33, 12: 35.33, 14: 30.33, 15: 32.67, 17: 25.67, 18: 26.33, 22: 25.67, 23: 24.67, 25: 25.0, 13: 28.67, 16: 26.33, 21: 26.33, 3: 26.67, 24: 24.33, 27: 24.33, 29: 24.33, 31: 28.33, 32: 36.0, 33: 26.33, 35: 19.0, 34: 21.67, 36: 23.33, 26: 23.67, 37: 18.67, 28: 22.0, 38: 13.0, 39: 25, 2: 11.0, 19: 24.0, 30: 21.0}
+Width from Solution: 112.00
+Total Cells: 2462
+Max Depth: 39
+Max Width: 37.33
+Average Width per Depth: 26.97
+Number of Primary Inputs: 33

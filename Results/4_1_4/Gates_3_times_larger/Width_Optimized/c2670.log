@@ -1,0 +1,19 @@
+Parsed Circuit c2670 has gate count 368
+Solving Initial Levels with 89357 constraints
+Loutputs: 32
+Initial Cost: 2468
+No Improvement Found in Iteration 2 at cost 2821
+Network is Appropriately Balanced
+Recovered Inserted Cost:2733
+Buffers = 2583
+Splitters = 150
+Total Time: 1209.9095318317413 seconds 
+Time in phase assignment 1206.0317635536194 
+Time in tree construction 1.4686532020568848 
+{1: 156, 5: 66.67, 6: 63.33, 3: 54.33, 23: 25.67, 4: 64.67, 9: 61.0, 29: 22.67, 8: 66.67, 2: 48.33, 7: 65.67, 12: 63.33, 11: 61.33, 30: 21.67, 13: 52.67, 10: 53.33, 16: 48.0, 14: 54.0, 15: 52.67, 17: 45.67, 21: 30.67, 18: 42.33, 19: 38.0, 20: 32.67, 22: 27.33, 24: 24.0, 25: 23.67, 26: 23.67, 27: 23.0, 28: 22.0, 31: 60}
+Width from Solution: 200.00
+Total Cells: 3317
+Max Depth: 31
+Max Width: 66.67
+Average Width per Depth: 48.23
+Number of Primary Inputs: 156

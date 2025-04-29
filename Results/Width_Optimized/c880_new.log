@@ -1,0 +1,19 @@
+Parsed Circuit c880 has gate count 306
+Solving Initial Levels with 6004 constraints
+Loutputs: 42
+Initial Cost: 1030
+No Improvement Found in Iteration 2 at cost 1040
+Network is Appropriately Balanced
+Recovered Inserted Cost:996
+Buffers = 850
+Splitters = 146
+Total Time: 1209.509161233902 seconds 
+Time in phase assignment 1206.990892648697 
+Time in tree construction 0.12528586387634277 
+{1: 60, 4: 42, 7: 42, 6: 42, 9: 42, 8: 42, 3: 42, 15: 40, 5: 42, 10: 42, 11: 42, 13: 42, 14: 42, 16: 41, 19: 42, 21: 35, 23: 25, 24: 36, 12: 42, 17: 42, 18: 41, 20: 42, 28: 32, 22: 40, 26: 34, 27: 22, 25: 24, 29: 24, 30: 26, 32: 26, 33: 21, 35: 18, 36: 25, 38: 21, 40: 21, 34: 25, 31: 24, 39: 11, 41: 8, 37: 15, 42: 26, 2: 37}
+Width from Solution: 42.00
+Total Cells: 1388
+Max Depth: 42
+Max Width: 42.00
+Average Width per Depth: 33.05
+Number of Primary Inputs: 60

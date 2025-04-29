@@ -1,5 +1,6 @@
 import random
 import matplotlib.pyplot as plt
+
 #Graph Node Class Definitions
 class Node:
     def __init__(self,name,gate_type,inputs,inversions):
@@ -337,10 +338,8 @@ class Ntk:
                 gateAtDepth[gate_depth] = 0
             if gate.gate_type == "buf":
                 bufferAtDepth[gate_depth] += 1
-                # cellsAtDepth[gate_depth] += 1/3
             else:
                 gateAtDepth[gate_depth] += 1
-                # cellsAtDepth[gate_depth] += 1
             if gate.gate_type == "PI":
                 numOfInputs = numOfInputs + 1
                     
@@ -357,76 +356,46 @@ class Ntk:
                 splitterAtDepth[splitter_depth] = 0
             widthAtDepth[splitter_depth] = max(widthAtDepth[splitter_depth], splitter_width)
             cellsAtDepth[splitter_depth] += 1
-            # cellsAtDepth[splitter_depth] += 1/3
             splitterAtDepth[splitter_depth] += 1
         
         if widthAtDepth:
             # max_width = max(cellsAtDepth.values())
             max_width = max(v for k, v in cellsAtDepth.items() if k != 1)
-            # print(cellsAtDepth)
-            print({k: round(v, 2) for k, v in cellsAtDepth.items()})
+            print(cellsAtDepth)
             avgWidthPerDepth = sum(cellsAtDepth.values()) / len(cellsAtDepth)
         else:
             max_width = 0
             avgWidthPerDepth = 0
-
-        # Read the Width value from problem solution file
-        width_from_solution = None
-        try:
-            with open('problem_sol.txt', 'r') as f:
-                for line in f:
-                    parts = line.strip().split()
-                    if len(parts) >= 3 and parts[1] == "Width":
-                        width_from_solution = float(parts[2])
-                        break
-        except FileNotFoundError:
-            print("Warning: problem_sol.txt not found.")
-        print(f"Width from Solution: {width_from_solution:.2f}")
+        
 
         print(f"Total Cells: {total_cells}")
         print(f"Max Depth: {max_depth}")
-        print(f"Max Width: {max_width:.2f}")
-        print(f"Average Width per Depth: {avgWidthPerDepth:.2f}")
+        print(f"Max Width: {max_width}")
+        print(f"Average Width per Depth: {avgWidthPerDepth}")
         print(f"Number of Primary Inputs: {numOfInputs}")
     
         plt.figure(figsize=(12, 6))
         plt.subplot(2, 2, 1)
-        # plt.bar(cellsAtDepth.keys(), cellsAtDepth.values())
-        plt.bar(
-            [k for k in cellsAtDepth.keys() if k != 1],
-            [v for k, v in cellsAtDepth.items() if k != 1]
-        )
+        plt.bar(cellsAtDepth.keys(), cellsAtDepth.values())
         plt.xlabel('Depth')
         plt.ylabel('Max Fanout Width at Depth')
         plt.title('Overall Fanout Width by Depth')
 
         plt.subplot(2, 2, 2)
-        # plt.bar(gateAtDepth.keys(), gateAtDepth.values())
-        plt.bar(
-            [k for k in gateAtDepth.keys() if k != 1],
-            [v for k, v in gateAtDepth.items() if k != 1]
-        )
+        plt.bar(gateAtDepth.keys(), gateAtDepth.values())
         plt.xlabel('Depth')
         plt.ylabel('Max Gate Fanout Width')
         plt.title('Gate Fanout Width by Depth')
         
         plt.subplot(2, 2, 3)
-        # plt.bar(splitterAtDepth.keys(), splitterAtDepth.values())
-        plt.bar(
-            [k for k in splitterAtDepth.keys() if k != 1],
-            [v for k, v in splitterAtDepth.items() if k != 1]
-        )
+        plt.bar(splitterAtDepth.keys(), splitterAtDepth.values())
         plt.xlabel('Depth')
         plt.ylabel('Max Splitter Fanout Width')
         plt.title('Splitter Fanout Width by Depth')
 
         plt.subplot(2, 2, 4)
         if bufferAtDepth:
-            # plt.bar(bufferAtDepth.keys(), bufferAtDepth.values())
-            plt.bar(
-                [k for k in bufferAtDepth.keys() if k != 1],
-                [v for k, v in bufferAtDepth.items() if k != 1]
-            )
+            plt.bar(bufferAtDepth.keys(), bufferAtDepth.values())
             plt.xlabel('Depth')
             plt.ylabel('Max Buffer Fanout Width')
             plt.title('Buffer Fanout Width by Depth')
@@ -436,10 +405,7 @@ class Ntk:
 
         plt.tight_layout()
         plt.show()
-
-        # plt.savefig(f'Results/4_1_4/Gates_3_times_larger/Width_Optimized/{self.name}.png')  # Save the figure
-        # plt.close()
-
+        
     def CleanNtk(self):
         for g in self.netlist:
             g.clean_connections()
@@ -527,10 +493,15 @@ def Write_Equations_20_to_26(ntk, N, Loutputs, n, fanout, temp, ASAP, ALAP, k_ma
 
 def Formulate_CPLEX(ntk,N, Loutputs, version):
     if version:
+        L_low = 1
+        L_high = 10
         obj_function=[]
         ASAP, ALAP, k_max = ntk.Find_ALAPASAP(Loutputs)
-        with open('temp.txt', 'w') as temp:
+        with open('../../temp.txt', 'w') as temp:
             temp.write("Subject To\n")
+            for n in ntk.netlist + ntk.splitters:
+                if L_low <= n.depth <= L_high:
+                    temp.write(f"D_{n.name} = {n.depth}\n")
             for n in ntk.netlist:
                 # Gate level restriction for PI and PO: Equation (3) and (4)
                 if (n.gate_type =="PI"):
@@ -587,13 +558,10 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
                     temp.write(line)
                     line = "D_"+sp.name+" - D_"+s.name+ "- "+str(N)+" "+objfun+" <= "+ str(N)+"\n"
                     temp.write(line)
-            # Equation (8)
+            # Equation (8) and (9)
             for i in range(1, Loutputs + 1):
                 temp.write(f"W_{i} >= 0\n")
                 width_constraint = " + ".join([f"X_{n.name}_{i}" for n in ntk.netlist + ntk.splitters])
-                # width_constraint = " + ".join([f"3 X_{n.name}_{i}" for n in ntk.netlist])
-                # for n in ntk.splitters:
-                #     width_constraint += f" + X_{n.name}_{i}"
                 width_constraint_buffer = ""
                 for n in ntk.netlist:
                     if len(n.splitter_out) == 1:
@@ -603,8 +571,8 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
                     else:
                         fanout = n.fanouts[0]
                     # ignore cases where level <= ASAP[i] or level > ALAP[j] to reduce complexity
-                    # if i <= ASAP[n.name] or i > ALAP[fanout.name]:
-                    #     continue
+                    if i <= ASAP[n.name] or i > ALAP[fanout.name]:
+                        continue
                     edge = (n.name, fanout.name)
                     max_k = k_max[edge]
                     for k in range(1, max_k + 1):
@@ -615,8 +583,8 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
                         if fanout in n.fanouts and fanout.gate_type == "splitter":
                             continue
                         # ignore cases where level <= ASAP[i] or level > ALAP[j] to reduce complexity
-                        # if i <= ASAP[n.name] or i > ALAP[fanout.name]:
-                        #     continue
+                        if i <= ASAP[n.name] or i > ALAP[fanout.name]:
+                            continue
                         edge = (n.name, fanout.name)
                         max_k = k_max[edge]
                         for k in range(1, max_k + 1):
@@ -631,7 +599,6 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
             # Equation (7)
                 level_assignment = " + ".join([f"{i} X_{n.name}_{i}" for i in range(1, Loutputs + 1)])
                 temp.write(f"{level_assignment} - D_{n.name} = 0\n")
-            # Equation (9)
             for i in range(2, Loutputs + 1):
                 temp.write(f"Width - W_{i} >= 0\n")
 
@@ -654,10 +621,10 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
                         continue
                     Write_Equations_20_to_26(ntk, N, Loutputs, n, fanout, temp, ASAP, ALAP, k_max)
 
-        filename = "problem.lp"  #ntk.name+"_"+str(N)+".lp"
+        filename = "../../problem.lp"  #ntk.name+"_"+str(N)+".lp"
         #sol_file = "problem_sol.txt" #ntk.name+"_"+str(N)+"_sol.txt"
         lines = []
-        with open('temp.txt', 'r') as temp:
+        with open('../../temp.txt', 'r') as temp:
             lines = temp.readlines()
         with open(filename,'w') as lp:
             objective = "Minimize\n"
@@ -708,7 +675,7 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
     else:
         obj_function=[]
         #bounds = ["Bounds\n"]
-        with open('temp.txt', 'w') as temp:
+        with open('../../temp.txt', 'w') as temp:
             temp.write("Subject To\n")
             for n in ntk.netlist:
                 if (n.gate_type =="PI"):
@@ -757,10 +724,10 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
                     temp.write(line)
                     line = "D_"+sp.name+" - D_"+s.name+ "- "+str(N)+" "+objfun+" <= "+ str(N)+"\n"
                     temp.write(line)
-        filename = "problem.lp"  #ntk.name+"_"+str(N)+".lp"
+        filename = "../../problem.lp"  #ntk.name+"_"+str(N)+".lp"
         #sol_file = "problem_sol.txt" #ntk.name+"_"+str(N)+"_sol.txt"
         lines = []
-        with open('temp.txt', 'r') as temp:
+        with open('../../temp.txt', 'r') as temp:
             lines = temp.readlines()
         with open(filename,'w') as lp:
             objective = "Minimize\n"
@@ -776,7 +743,7 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
         return (time.time()-ti)
 def Formulate(ntk,N):
     obj_function=[]
-    with open('temp.txt', 'w') as temp:
+    with open('../../temp.txt', 'w') as temp:
         for n in ntk.netlist:
             if (n.gate_type =="PI"):
                 temp.write("D_"+n.name+"=1;\n")
@@ -819,7 +786,7 @@ def Formulate(ntk,N):
     filename = ntk.name+"_"+str(N)+".lp"
     sol_file = ntk.name+"_"+str(N)+"_sol.txt"
     lines = []
-    with open('temp.txt', 'r') as temp:
+    with open('../../temp.txt', 'r') as temp:
         lines = temp.readlines()
     with open(filename,'w') as lp:
         objective = "Min: "
@@ -887,7 +854,7 @@ def Formulate_init_CPLEX(ntk,N,K):
     
     obj_function=[]
     constraints = 0
-    with open('temp.txt', 'w') as temp:
+    with open('../../temp.txt', 'w') as temp:
         temp.write("Subject To\nXNULL=0\n")
         for n in ntk.netlist:
             if (n.gate_type =="PI"):
@@ -935,10 +902,10 @@ def Formulate_init_CPLEX(ntk,N,K):
                     #S_line+=";\n"
                     #temp.write(S_line) 
                     #temp.write(APS_min)
-    filename = "problem.lp"  #ntk.name+"_"+str(N)+".lp"
+    filename = "../../problem.lp"  #ntk.name+"_"+str(N)+".lp"
     #sol_file = ntk.name+"_"+str(N)+"_sol.txt"
     lines = []
-    with open('temp.txt', 'r') as temp:
+    with open('../../temp.txt', 'r') as temp:
         lines = temp.readlines()
     with open(filename,'w') as lp:
         objective = "Minimize\n "
@@ -954,10 +921,6 @@ def Formulate_init_CPLEX(ntk,N,K):
     ti = time.time()
     os.system("./solve > junk.txt")#"lp_solve "+filename +"> "+sol_file)
     return (time.time()-ti)
-
-
-
-
 
 
 
@@ -1387,28 +1350,17 @@ def Algorithm(name,fanout,phase_skips,phases):
         if (n.gate_type!="PO" and n.gate_type!="PI"):
             gate_count+=1
     print("Parsed Circuit " +name+" has gate count "+str(gate_count))
-    #circ = circuit
-    #print("avlie")
+
     phase_time +=Formulate_init_CPLEX(circ,phase_skips,fanout)
-    #print("Total Time: %s seconds " % (phase_time))
-    #Formulate_CPLEX(circ,phase_skips)
-
     best_cost,buff_cost =Read_Solution_CPLEX(circ,phase_skips)
-
-    #for n in circ.netlist:
-    #    n.Find_Slack(phase_skips)
-    #print("Estimated Cost: "+str(best_cost))
-    ######I dont think these were used?? circ.Fix_outputs()
-    ######circ.Set_ALAP()
     circ.phases = phases
     #print("Init Trees")
     tree_time+=Resolve_Fanouts(circ,fanout,1,phase_skips)
     circ.Find_maxDepth()
-    # Loutputs = math.ceil(circ.maxDepth) + 1
-    Loutputs = 38
+    Loutputs = math.ceil(circ.maxDepth) + 1
     print(f"Loutputs: {Loutputs}")
 #    Loutputs = 41
-    version = 1
+    version = 0
     #print("Tree time: %s seconds " % (tree_time))
     #return pt,dp
     #print(len(circ.splitters))
@@ -1417,6 +1369,7 @@ def Algorithm(name,fanout,phase_skips,phases):
         n.Find_Slack(phase_skips)
     #print("Reading Solution")
     best_cost,buff_cost =Read_Solution_CPLEX(circ,phase_skips)
+    version = 1
     cost = 0
     iteration = 1
     saved=[]
@@ -1466,9 +1419,8 @@ def Run_Benchmarks():
     Phase4=[]
     NPhase=[]
     
-    circuit = "c1908"
+    circuit = "c2670"
     circ4,cost4,s1,s2,s3,s4 = Algorithm(circuit,4,2,8)
-    # circ4,cost4,s1,s2,s3,s4 = Algorithm(circuit,4,1,4)
     Phase4.append((cost4,circuit,s1,s2,s3,s4))
     exit()
     """

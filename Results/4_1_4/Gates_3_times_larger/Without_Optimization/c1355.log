@@ -1,0 +1,32 @@
+A Joint Optimization of Buffer and Splitter Insertion
+Running Benchmarks:
+['c1355']
+
+Parsed Circuit c1355 has gate count 389
+Solving Initial Levels with 7983 constraints
+No Improvement Found in Iteration 3 at cost 1230
+Inserting Buffers
+Network is Appropriately Balanced
+Recovered Inserted Cost:1230
+Buffers = 976
+Splitters = 254
+Total Time: 2.4199471473693848 seconds 
+Time in phase assignment 0.2515685558319092 
+Time in tree construction 2.1246392726898193 
+
+
+{1: 41, 5: 38.67, 4: 65.67, 7: 39.33, 8: 25.33, 10: 38.67, 11: 24.0, 3: 43.67, 13: 25.67, 14: 18.0, 6: 32.0, 9: 24.67, 12: 17.33, 16: 19.33, 18: 22.33, 20: 20.33, 21: 18.67, 19: 19.33, 22: 19.67, 24: 20.0, 26: 30.67, 28: 53.33, 30: 37.33, 31: 21.33, 25: 17.0, 23: 19.0, 29: 26.67, 32: 32, 2: 13.67, 15: 13.33, 17: 15.33, 27: 18.67}
+Total Cells: 1692
+Max Depth: 32
+Max Width: 65.67
+Average Width per Depth: 27.25
+Number of Primary Inputs: 41
+Parameters
+Phases:4
+Maximum Phase Skips:0
+Splitter Fanout Limit:4
+
+
+Summary of Results
+Benchmark | Total Buffer/Splitter Cost
+c1355  |  1230

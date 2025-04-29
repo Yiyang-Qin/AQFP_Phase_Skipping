@@ -336,13 +336,15 @@ class Ntk:
                 splitterAtDepth[gate_depth] = 0
                 bufferAtDepth[gate_depth] = 0
             widthAtDepth[gate_depth] = max(widthAtDepth[gate_depth], gate_width)
-            cellsAtDepth[gate_depth] += 1
+            # cellsAtDepth[gate_depth] += 1
             if gate_depth not in gateAtDepth:
                 gateAtDepth[gate_depth] = 0
             if gate.gate_type == "buf":
                 bufferAtDepth[gate_depth] += 1
+                cellsAtDepth[gate_depth] += 1 / 3
             else:
                 gateAtDepth[gate_depth] += 1
+                cellsAtDepth[gate_depth] += 1
             if gate.gate_type == "PI":
                 numOfInputs = numOfInputs + 1
 
@@ -358,13 +360,15 @@ class Ntk:
             if splitter_depth not in splitterAtDepth:
                 splitterAtDepth[splitter_depth] = 0
             widthAtDepth[splitter_depth] = max(widthAtDepth[splitter_depth], splitter_width)
-            cellsAtDepth[splitter_depth] += 1
+            # cellsAtDepth[splitter_depth] += 1
+            cellsAtDepth[splitter_depth] += 1 / 3
             splitterAtDepth[splitter_depth] += 1
 
         if widthAtDepth:
             # max_width = max(cellsAtDepth.values())
             max_width = max(v for k, v in cellsAtDepth.items() if k != 1)
-            print(cellsAtDepth)
+            # print(cellsAtDepth)
+            print({k: round(v, 2) for k, v in cellsAtDepth.items()})
             avgWidthPerDepth = sum(cellsAtDepth.values()) / len(cellsAtDepth)
         else:
             max_width = 0
@@ -372,32 +376,48 @@ class Ntk:
 
         print(f"Total Cells: {total_cells}")
         print(f"Max Depth: {max_depth}")
-        print(f"Max Width: {max_width}")
-        print(f"Average Width per Depth: {avgWidthPerDepth}")
+        print(f"Max Width: {max_width:.2f}")
+        print(f"Average Width per Depth: {avgWidthPerDepth:.2f}")
         print(f"Number of Primary Inputs: {numOfInputs}")
 
         plt.figure(figsize=(12, 6))
         plt.subplot(2, 2, 1)
-        plt.bar(cellsAtDepth.keys(), cellsAtDepth.values())
+        # plt.bar(cellsAtDepth.keys(), cellsAtDepth.values())
+        plt.bar(
+            [k for k in cellsAtDepth.keys() if k != 1],
+            [v for k, v in cellsAtDepth.items() if k != 1]
+        )
         plt.xlabel('Depth')
         plt.ylabel('Max Fanout Width at Depth')
         plt.title('Overall Fanout Width by Depth')
 
         plt.subplot(2, 2, 2)
-        plt.bar(gateAtDepth.keys(), gateAtDepth.values())
+        # plt.bar(gateAtDepth.keys(), gateAtDepth.values())
+        plt.bar(
+            [k for k in gateAtDepth.keys() if k != 1],
+            [v for k, v in gateAtDepth.items() if k != 1]
+        )
         plt.xlabel('Depth')
         plt.ylabel('Max Gate Fanout Width')
         plt.title('Gate Fanout Width by Depth')
 
         plt.subplot(2, 2, 3)
-        plt.bar(splitterAtDepth.keys(), splitterAtDepth.values())
+        # plt.bar(splitterAtDepth.keys(), splitterAtDepth.values())
+        plt.bar(
+            [k for k in splitterAtDepth.keys() if k != 1],
+            [v for k, v in splitterAtDepth.items() if k != 1]
+        )
         plt.xlabel('Depth')
         plt.ylabel('Max Splitter Fanout Width')
         plt.title('Splitter Fanout Width by Depth')
 
         plt.subplot(2, 2, 4)
         if bufferAtDepth:
-            plt.bar(bufferAtDepth.keys(), bufferAtDepth.values())
+            # plt.bar(bufferAtDepth.keys(), bufferAtDepth.values())
+            plt.bar(
+                [k for k in bufferAtDepth.keys() if k != 1],
+                [v for k, v in bufferAtDepth.items() if k != 1]
+            )
             plt.xlabel('Depth')
             plt.ylabel('Max Buffer Fanout Width')
             plt.title('Buffer Fanout Width by Depth')
@@ -408,7 +428,7 @@ class Ntk:
         plt.tight_layout()
         # plt.show()
 
-        plt.savefig(f'Results/4_1_4/{self.name}.png')  # Save the figure
+        plt.savefig(f'Results/4_1_4/Gates_3_times_larger/Without_Optimization/{self.name}.png')  # Save the figure
         plt.close()
 
     def CleanNtk(self):
@@ -1155,7 +1175,7 @@ if __name__ == "__main__":
     ##############Modify HERE##########
     # Benchmarks = ["c432","c499","c880","c1355","c1908","c2670"]
     # Benchmarks = ["c6288", "alu32", "c7552"]
-    Benchmarks = ["c1908"]
+    Benchmarks = ["c2670"]
     Splitter_Fanout = 4
     Phase_Skips = 0
     Phases  = 4

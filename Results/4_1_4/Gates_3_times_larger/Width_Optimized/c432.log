@@ -1,0 +1,20 @@
+Parsed Circuit c432 has gate count 121
+Solving Initial Levels with 4375 constraints
+Loutputs: 41
+Initial Cost: 974
+Iteration 2: 952
+No Improvement Found in Iteration 3 at cost 972
+Network is Appropriately Balanced
+Recovered Inserted Cost:959
+Buffers = 886
+Splitters = 73
+Total Time: 1679.686157464981 seconds 
+Time in phase assignment 1678.5491149425507 
+Time in tree construction 0.08294081687927246 
+{1: 36, 5: 16.0, 6: 15.0, 7: 14.0, 4: 16.0, 3: 14.67, 8: 13.0, 10: 13.67, 11: 16.0, 15: 16.33, 12: 16.33, 13: 12.67, 16: 13.67, 17: 11.67, 14: 13.33, 18: 11.33, 21: 15.67, 23: 11.67, 27: 10.67, 22: 13.33, 25: 12.33, 24: 10.0, 26: 12.0, 28: 8.67, 20: 12.33, 29: 7.67, 31: 8.33, 32: 12.33, 33: 9.0, 35: 7.67, 37: 8.0, 34: 6.0, 38: 6.0, 39: 4.33, 40: 3.67, 41: 7, 2: 12.0, 9: 12.33, 19: 11.0, 36: 5.0, 30: 7.0}
+Width from Solution: 49.00
+Total Cells: 1123
+Max Depth: 41
+Max Width: 16.33
+Average Width per Depth: 11.80
+Number of Primary Inputs: 36
