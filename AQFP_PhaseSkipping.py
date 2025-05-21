@@ -332,15 +332,15 @@ class Ntk:
                 splitterAtDepth[gate_depth] = 0
                 bufferAtDepth[gate_depth] = 0
             widthAtDepth[gate_depth] = max(widthAtDepth[gate_depth], gate_width)
-            cellsAtDepth[gate_depth] += 1
+            # cellsAtDepth[gate_depth] += 1
             if gate_depth not in gateAtDepth:
                 gateAtDepth[gate_depth] = 0
             if gate.gate_type == "buf":
                 bufferAtDepth[gate_depth] += 1
-                # cellsAtDepth[gate_depth] += 1/3
+                cellsAtDepth[gate_depth] += 1/3
             else:
                 gateAtDepth[gate_depth] += 1
-                # cellsAtDepth[gate_depth] += 1
+                cellsAtDepth[gate_depth] += 1
             if gate.gate_type == "PI":
                 numOfInputs = numOfInputs + 1
                     
@@ -356,8 +356,8 @@ class Ntk:
             if splitter_depth not in splitterAtDepth:
                 splitterAtDepth[splitter_depth] = 0
             widthAtDepth[splitter_depth] = max(widthAtDepth[splitter_depth], splitter_width)
-            cellsAtDepth[splitter_depth] += 1
-            # cellsAtDepth[splitter_depth] += 1/3
+            # cellsAtDepth[splitter_depth] += 1
+            cellsAtDepth[splitter_depth] += 1/3
             splitterAtDepth[splitter_depth] += 1
         
         if widthAtDepth:
@@ -538,7 +538,7 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
                     # temp.write("D_"+n.name+" <= 3\n")
                     temp.write("D_"+n.name+" = 1\n")
                 if (n.gate_type=="PO"):
-                    temp.write("D_"+n.name+"-D_outputs = 0\n")
+                    # temp.write("D_"+n.name+"-D_outputs = 0\n")
                     temp.write(f"D_outputs <= {Loutputs}\n")
 
                 # Equation (2) for netlist gates
@@ -590,10 +590,10 @@ def Formulate_CPLEX(ntk,N, Loutputs, version):
             # Equation (8)
             for i in range(1, Loutputs + 1):
                 temp.write(f"W_{i} >= 0\n")
-                width_constraint = " + ".join([f"X_{n.name}_{i}" for n in ntk.netlist + ntk.splitters])
-                # width_constraint = " + ".join([f"3 X_{n.name}_{i}" for n in ntk.netlist])
-                # for n in ntk.splitters:
-                #     width_constraint += f" + X_{n.name}_{i}"
+                # width_constraint = " + ".join([f"X_{n.name}_{i}" for n in ntk.netlist + ntk.splitters])
+                width_constraint = " + ".join([f"3 X_{n.name}_{i}" for n in ntk.netlist])
+                for n in ntk.splitters:
+                    width_constraint += f" + X_{n.name}_{i}"
                 width_constraint_buffer = ""
                 for n in ntk.netlist:
                     if len(n.splitter_out) == 1:
@@ -1316,62 +1316,97 @@ def Insert_Tree_init(ntk,pt,state,root,source, delays):
                             
                     
 
-def Insert_Buffers(ntk,N,flag):
-    sol_file = "problem_sol.txt"  #ntk.name+"_"+str(N)+"_sol.txt"
-    if flag == "C":
-        with open(sol_file,'r') as sol:
-            for line in sol:
-                if line.split()[1][0] == "C":
-                    result = line.split()
-                    parts = result[1].split('_')
-                    # if the line is not c_ijk but is c_ij, then ignore
-                    # if the value of c_ijk is 0, then ignore
-                    # if len(parts) == 4 and result[2] != "0" and result[2] != "-0":
-                    if len(parts) == 4 and int(float(result[2])) != 0:
-                        i = parts[1]
-                        j = parts[2]
-                        k = parts[3]
-                        #insert cost buffers between the i and j nodes
-                        i_name = i
-                        i_first = i_name
-                        j_name = j
-                        j_first = j_name
+def Insert_Buffers(ntk,N,flag,Version):
+    if Version:
+        sol_file = "problem_sol.txt"  #ntk.name+"_"+str(N)+"_sol.txt"
+        if flag == "C":
+            with open(sol_file,'r') as sol:
+                for line in sol:
+                    if line.split()[1][0] == "C":
+                        result = line.split()
+                        parts = result[1].split('_')
+                        # if the line is not c_ijk but is c_ij, then ignore
+                        # if the value of c_ijk is 0, then ignore
+                        # if len(parts) == 4 and result[2] != "0" and result[2] != "-0":
+                        if len(parts) == 4 and int(float(result[2])) != 0:
+                            i = parts[1]
+                            j = parts[2]
+                            k = parts[3]
+                            #insert cost buffers between the i and j nodes
+                            i_name = i
+                            i_first = i_name
+                            j_name = j
+                            j_first = j_name
 
-                        if k == "1":
-                            if "splitter" in i_name and "buf" not in i_name:
-                                i = ntk.splitters[ntk.s_dict[i_name]]
+                            if k == "1":
+                                if "splitter" in i_name and "buf" not in i_name:
+                                    i = ntk.splitters[ntk.s_dict[i_name]]
+                                else:
+                                    i = ntk.Obj(i_name)
                             else:
-                                i = ntk.Obj(i_name)
-                        else:
-                            i = ntk.Obj("buf_" + i_first + "_" + j_first + "_" + str(int(k) - 1))
+                                i = ntk.Obj("buf_" + i_first + "_" + j_first + "_" + str(int(k) - 1))
 
-                        if "splitter" in j_name:
-                            j=ntk.splitters[ntk.s_dict[j_name]]
-                        else:
-                            j=ntk.Obj(j_name)
+                            if "splitter" in j_name:
+                                j=ntk.splitters[ntk.s_dict[j_name]]
+                            else:
+                                j=ntk.Obj(j_name)
 
-                        buf_name = "buf_" + i_first + "_" + j_first + "_" + k
-                        buf = Node(buf_name,"buf",[i],[0])
-                        ntk.add(buf)
-                        j.insertbuf(i,buf)
+                            buf_name = "buf_" + i_first + "_" + j_first + "_" + k
+                            buf = Node(buf_name,"buf",[i],[0])
+                            ntk.add(buf)
+                            j.insertbuf(i,buf)
 
-    elif flag == "D":
-        with open(sol_file,'r') as sol:
+        elif flag == "D":
+            with open(sol_file,'r') as sol:
+                for line in sol:
+                    if line.split()[1][0] == "D":
+                        result = line.split()
+                        parts = result[1].split('_')
+                        # if the line is not D_ijk but is D_ij, then ignore
+                        # if the value of D_ijk is 0, then ignore
+                        # if len(parts) == 4 and result[2] != "0" and result[2] != "-0":
+                        if len(parts) == 4 and int(float(result[2])) != 0:
+                            i = parts[1]
+                            j = parts[2]
+                            k = parts[3]
+                            value = math.ceil(float(result[2]))
+                            buf_name = "buf_" + i + "_" + j + "_" + k
+                            buf = ntk.Obj(buf_name)
+                            buf.depth = value
+
+    elif Version == 0:
+        sol_file = "../problem_sol.txt"  # ntk.name+"_"+str(N)+"_sol.txt"
+        with open(sol_file, 'r') as sol:
             for line in sol:
-                if line.split()[1][0] == "D":
+                if (line.split()[1][0] == "C"):  # calculate cost
                     result = line.split()
-                    parts = result[1].split('_')
-                    # if the line is not D_ijk but is D_ij, then ignore
-                    # if the value of D_ijk is 0, then ignore
-                    # if len(parts) == 4 and result[2] != "0" and result[2] != "-0":
-                    if len(parts) == 4 and int(float(result[2])) != 0:
-                        i = parts[1]
-                        j = parts[2]
-                        k = parts[3]
-                        value = math.ceil(float(result[2]))
-                        buf_name = "buf_" + i + "_" + j + "_" + k
-                        buf = ntk.Obj(buf_name)
-                        buf.depth = value
+                    cost = math.ceil(float(result[2]))
+                    # insert cost buffers between the i and j nodes
+                    i = result[1].split('_')[1]
+                    j = result[1].split('_')[2]
+                    i_name = i
+                    i_first = i_name
+                    j_name = j
+                    j_first = j_name
+                    is_split = 0
+                    while (cost > 0):
+                        if "splitter" in i_name and "buf" not in i_name:
+                            i = ntk.splitters[ntk.s_dict[i_name]]
+                        else:
+                            i = ntk.Obj(i_name)
+                        if "splitter" in j_name:
+                            j = ntk.splitters[ntk.s_dict[j_name]]
+                        else:
+                            j = ntk.Obj(j_name)
+                        bufName = "buf_" + i_first + "_" + j_first + "_" + str(cost)
+                        buf = Node(bufName, "buf", [i], [0])
+                        ntk.add(buf)
+                        j.insertbuf(i, buf)
+                        buf.depth = i.depth + N
+                        i = buf
+                        j_name = j.name
+                        i_name = i.name
+                        cost += -1
 
 
 
@@ -1404,11 +1439,11 @@ def Algorithm(name,fanout,phase_skips,phases):
     #print("Init Trees")
     tree_time+=Resolve_Fanouts(circ,fanout,1,phase_skips)
     circ.Find_maxDepth()
-    # Loutputs = math.ceil(circ.maxDepth) + 1
-    Loutputs = 38
+    Loutputs = math.ceil(circ.maxDepth) + 1
+    # Loutputs = 38
     print(f"Loutputs: {Loutputs}")
 #    Loutputs = 41
-    version = 1
+    version = 0
     #print("Tree time: %s seconds " % (tree_time))
     #return pt,dp
     #print(len(circ.splitters))
@@ -1438,11 +1473,49 @@ def Algorithm(name,fanout,phase_skips,phases):
             print("Iteration "+str(iteration)+": "+str(best_cost))
         else:
             print("No Improvement Found in Iteration "+str(iteration) + " at cost "+str(cost))
+            # circ.CleanNtk()
+            #print("Inserting Buffers")
+            # saved = buff_cost
+            # Insert_Buffers(circ,phase_skips,"C", version)
+            # Insert_Buffers(circ,phase_skips,"D", version)
+
+    version = 1
+    cost = 0
+    best_cost = math.inf
+
+    # for n in circ.netlist:
+    #     n.Find_Slack(phase_skips)
+    # tree_time+=Resolve_Fanouts(circ,fanout,0,phase_skips)
+    # #print(len(circ.splitters))
+    # phase_time+=Formulate_CPLEX(circ,phase_skips, Loutputs, version)
+    # cost,buff_cost = Read_Solution_CPLEX(circ,phase_skips)
+    # iteration+=1
+    #
+    # best_cost = cost
+    # print("Iteration "+str(iteration)+": "+str(best_cost))
+    # circ.CleanNtk()
+    # Insert_Buffers(circ,phase_skips,"C", version)
+    # Insert_Buffers(circ,phase_skips,"D", version)
+
+    while (cost<best_cost):
+        for n in circ.netlist:
+            n.Find_Slack(phase_skips)
+        tree_time+=Resolve_Fanouts(circ,fanout,0,phase_skips)
+        #print(len(circ.splitters))
+        phase_time+=Formulate_CPLEX(circ,phase_skips, Loutputs, version)
+        cost,buff_cost = Read_Solution_CPLEX(circ,phase_skips)
+        iteration+=1
+        if (cost<best_cost):
+            best_cost = cost
+            cost = 0
+            print("Iteration "+str(iteration)+": "+str(best_cost))
+        else:
+            print("No Improvement Found in Iteration "+str(iteration) + " at cost "+str(cost))
             circ.CleanNtk()
             #print("Inserting Buffers")
             saved = buff_cost
-            Insert_Buffers(circ,phase_skips,"C")
-            Insert_Buffers(circ,phase_skips,"D")
+            Insert_Buffers(circ,phase_skips,"C", version)
+            Insert_Buffers(circ,phase_skips,"D", version)
 
     #print("Best Cost Found is: "+str(best_cost))
     circ.set_phases()
@@ -1466,9 +1539,9 @@ def Run_Benchmarks():
     Phase4=[]
     NPhase=[]
     
-    circuit = "c1908"
-    circ4,cost4,s1,s2,s3,s4 = Algorithm(circuit,4,2,8)
-    # circ4,cost4,s1,s2,s3,s4 = Algorithm(circuit,4,1,4)
+    circuit = "c2670"
+    # circ4,cost4,s1,s2,s3,s4 = Algorithm(circuit,4,2,8)
+    circ4,cost4,s1,s2,s3,s4 = Algorithm(circuit,4,1,4)
     Phase4.append((cost4,circuit,s1,s2,s3,s4))
     exit()
     """
