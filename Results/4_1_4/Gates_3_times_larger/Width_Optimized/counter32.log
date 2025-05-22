@@ -1,0 +1,19 @@
+Parsed Circuit counter32 has gate count 82
+Solving Initial Levels with 1189 constraints
+Loutputs: 28
+Iteration 2: 314
+Best Cost Found is: 314
+Network is Appropriately Balanced
+Recovered Inserted Cost:325
+Buffers = 275
+Splitters = 50
+Total Time: 6.129437685012817 seconds 
+Time in phase assignment 5.960382461547852 
+Time in tree construction 0.009185791015625 
+{1: 32, 6: 8.67, 5: 11.0, 7: 10.67, 8: 7.67, 9: 10.0, 2: 11.0, 11: 8.67, 13: 8.0, 15: 7.33, 12: 6.67, 17: 6.67, 19: 7.0, 20: 5.33, 3: 11.0, 4: 11.0, 23: 8.67, 24: 6.0, 18: 4.33, 26: 7.0, 27: 4, 22: 6.33, 21: 6.33, 28: 4, 14: 4.0, 16: 3.33, 10: 7.33, 25: 3.33}
+Width from Solution: 33.00
+Total Cells: 444
+Max Depth: 28
+Max Width: 11.00
+Average Width per Depth: 8.12
+Number of Primary Inputs: 32

@@ -1,0 +1,19 @@
+Parsed Circuit counter128 has gate count 428
+Solving Initial Levels with 6007 constraints
+Loutputs: 43
+Iteration 2: 1518
+Best Cost Found is: 1518
+Network is Appropriately Balanced
+Recovered Inserted Cost:1371
+Buffers = 1113
+Splitters = 258
+Total Time: 1805.395741701126 seconds 
+Time in phase assignment 1803.4145994186401 
+Time in tree construction 0.0556182861328125 
+{1: 128, 8: 30.33, 5: 43.67, 7: 43.33, 9: 36.33, 11: 32.33, 13: 30.33, 15: 29.33, 17: 29.0, 6: 31.67, 2: 44.0, 4: 43.67, 19: 30.33, 20: 12.67, 22: 20.0, 3: 44.0, 24: 23.67, 21: 35.67, 25: 19.67, 18: 14.0, 27: 16.67, 28: 15.33, 30: 15.33, 31: 15.33, 29: 14.67, 10: 26.0, 12: 23.0, 23: 26.33, 26: 18.67, 33: 11.0, 32: 12.67, 35: 10.67, 36: 7.0, 39: 6.0, 40: 6.67, 34: 13.33, 37: 12.0, 38: 7.33, 41: 6, 42: 3.33, 43: 2, 16: 13.33, 14: 15.33}
+Width from Solution: 132.00
+Total Cells: 1934
+Max Depth: 43
+Max Width: 44.00
+Average Width per Depth: 23.72
+Number of Primary Inputs: 128

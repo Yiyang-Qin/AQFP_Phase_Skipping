@@ -426,9 +426,9 @@ class Ntk:
             plt.title('No Buffers')
 
         plt.tight_layout()
-        # plt.show()
+        plt.show()
 
-        plt.savefig(f'Results/4_1_4/Gates_3_times_larger/Without_Optimization/{self.name}.png')  # Save the figure
+        # plt.savefig(f'Results/4_1_4/Gates_3_times_larger/Without_Optimization/{self.name}.png')  # Save the figure
         plt.close()
 
     def CleanNtk(self):
@@ -1055,10 +1055,10 @@ def Algorithm(name,fanout,phase_overlaps,phases):
     best_cost,buff_cost =Read_Solution_CPLEX(circ,phase_overlaps)
     circ.phases = phases
     
-    Print_Fanout_Flag = 0 # set when generating the fanouts distribution plot
-    if Print_Fanout_Flag:
-        analyze_fanout_distribution(circ)
-        return circ, 0
+    # Print_Fanout_Flag = 0 # set when generating the fanouts distribution plot
+    # if Print_Fanout_Flag:
+    #     analyze_fanout_distribution(circ)
+    #     return circ, 0
 
     tree_time+=Resolve_Fanouts(circ,fanout,1,phase_overlaps)
     phase_time+=Formulate_CPLEX(circ,phase_overlaps)
@@ -1083,6 +1083,7 @@ def Algorithm(name,fanout,phase_overlaps,phases):
         if (cost<best_cost):
             best_cost = cost
             cost = 0
+            print("Iteration " + str(iteration) + ": " + str(best_cost))
         else:
             print("No Improvement Found in Iteration "+str(iteration) + " at cost "+str(cost))
             if reverse_flag != 1:
@@ -1118,23 +1119,23 @@ def Algorithm(name,fanout,phase_overlaps,phases):
     #                 Insert_Buffers(circ,phase_overlaps)
     #             break
 
-    if reverse_flag == 1:
-        cost = 0
-        while (cost < best_cost):
-            for n in circ.netlist:
-                n.Find_Slack(phase_overlaps)
-            tree_time += Resolve_Fanouts(circ, fanout, 2, phase_overlaps)
-            phase_time += Formulate_CPLEX(circ, phase_overlaps)
-            cost, buff_cost = Read_Solution_CPLEX(circ, phase_overlaps)
-            iteration += 1
-            if (cost < best_cost):
-                best_cost = cost
-                cost = 0
-            else:
-                print("No Improvement Found in Iteration " + str(iteration) + " at cost " + str(cost))
-                circ.CleanNtk()
-                print("Inserting Buffers")
-                Insert_Buffers(circ, phase_overlaps)
+    # if reverse_flag == 1:
+    #     cost = 0
+    #     while (cost < best_cost):
+    #         for n in circ.netlist:
+    #             n.Find_Slack(phase_overlaps)
+    #         tree_time += Resolve_Fanouts(circ, fanout, 2, phase_overlaps)
+    #         phase_time += Formulate_CPLEX(circ, phase_overlaps)
+    #         cost, buff_cost = Read_Solution_CPLEX(circ, phase_overlaps)
+    #         iteration += 1
+    #         if (cost < best_cost):
+    #             best_cost = cost
+    #             cost = 0
+    #         else:
+    #             print("No Improvement Found in Iteration " + str(iteration) + " at cost " + str(cost))
+    #             circ.CleanNtk()
+    #             print("Inserting Buffers")
+    #             Insert_Buffers(circ, phase_overlaps)
 
     circ.set_phases()
     # netlist_name = name+"_"+str(phases)+"phases_"+str(phase_overlaps-1)+"_netlist.v"
@@ -1175,7 +1176,7 @@ if __name__ == "__main__":
     ##############Modify HERE##########
     # Benchmarks = ["c432","c499","c880","c1355","c1908","c2670"]
     # Benchmarks = ["c6288", "alu32", "c7552"]
-    Benchmarks = ["c2670"]
+    Benchmarks = ["c1908"]
     Splitter_Fanout = 4
     Phase_Skips = 0
     Phases  = 4

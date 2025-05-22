@@ -1,8 +1,7 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import time
 import os
-from AQFP_PhaseSkipping import Algorithm
+from Old_Ver_Code.AQFP_PhaseSkipping import Algorithm
 
 # Parameters
 # Benchmarks = ["c432", "c499", "c880","c1355", "c1908", "c2670", "c3540", "counter16", "counter32", "counter64", "counter128", "mult8"]  # List of benchmarks to run

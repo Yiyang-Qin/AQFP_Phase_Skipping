@@ -1,0 +1,20 @@
+Parsed Circuit counter16 has gate count 29
+Solving Initial Levels with 441 constraints
+Loutputs: 22
+Initial Cost: 77
+No Improvement Found in Iteration 2 at cost 77
+Inserting Buffers
+Best Cost Found is: 77
+Network is Appropriately Balanced
+Recovered Inserted Cost:77
+Buffers = 58
+Splitters = 19
+Total Time: 0.12198233604431152 seconds 
+Time in phase assignment 0.06357216835021973 
+Time in tree construction 0.0030622482299804688 
+{1: 16, 2: 8, 4: 5.33, 6: 4.0, 8: 4.0, 10: 3.67, 12: 3.67, 14: 3.67, 16: 3.33, 18: 2.0, 19: 4, 3: 2.67, 5: 2.67, 7: 2.67, 9: 2.67, 13: 1.67, 15: 1.67, 17: 1.33, 11: 1.67}
+Total Cells: 126
+Max Depth: 19
+Max Width: 8.00
+Average Width per Depth: 3.93
+Number of Primary Inputs: 16

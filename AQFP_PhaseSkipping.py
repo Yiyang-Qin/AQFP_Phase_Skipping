@@ -381,7 +381,8 @@ class Ntk:
                         break
         except FileNotFoundError:
             print("Warning: problem_sol.txt not found.")
-        print(f"Width from Solution: {width_from_solution:.2f}")
+        if width_from_solution != None:
+            print(f"Width from Solution: {width_from_solution:.2f}")
 
         print(f"Total Cells: {total_cells}")
         print(f"Max Depth: {max_depth}")
@@ -967,41 +968,76 @@ def Formulate_init_CPLEX(ntk,N,K):
 
 
 
-def Read_Solution_CPLEX(ntk,N):
+def Read_Solution_CPLEX(ntk,N,Version):
     #print(ntk.s_dict)
-    sol_file = "problem_sol.txt"  #ntk.name+"_"+str(N)+"_sol.txt"
-    cost = 0
-    buff_cost = 0
-    buff_cost2=0
-    buff_cost3=0
-    buff_cost4 = 0
-    with open(sol_file,'r') as sol:
-        for line in sol:
-            if line.split()[1][0]=="C" and len(line.split()[1].split('_')) == 3: #calculate cost
-                result = line.split()
-                cost += math.ceil(float(result[2]))
-                buff_cost += math.ceil((math.ceil(float(result[2]))-1)/2)
-                buff_cost2 += math.ceil((math.ceil(float(result[2]))-1)/3)
-                buff_cost3 += math.ceil((math.ceil(float(result[2]))-1)/4)
-                buff_cost4 += math.ceil((math.ceil(float(result[2]))-1)/5)
-            if line.split()[1][0]=="D" and len(line.split()[1].split('_')) == 2: #store depth values
-                result = line.split()
-                if (result[1].split("_")[1]=="outputs"):
-                    continue
-                else:
-                    if "splitter" in result[1].split("_")[1]: #assign depth value to splitter
-                        value = math.ceil(float(result[2]))
-                        ntk.splitters[ntk.s_dict[result[1].split("_")[1]]].depth=value
+    if Version:
+        sol_file = "problem_sol.txt"  #ntk.name+"_"+str(N)+"_sol.txt"
+        cost = 0
+        buff_cost = 0
+        buff_cost2=0
+        buff_cost3=0
+        buff_cost4 = 0
+        with open(sol_file,'r') as sol:
+            for line in sol:
+                if line.split()[1][0]=="C" and len(line.split()[1].split('_')) == 3: #calculate cost
+                    result = line.split()
+                    cost += math.ceil(float(result[2]))
+                    buff_cost += math.ceil((math.ceil(float(result[2]))-1)/2)
+                    buff_cost2 += math.ceil((math.ceil(float(result[2]))-1)/3)
+                    buff_cost3 += math.ceil((math.ceil(float(result[2]))-1)/4)
+                    buff_cost4 += math.ceil((math.ceil(float(result[2]))-1)/5)
+                if line.split()[1][0]=="D" and len(line.split()[1].split('_')) == 2: #store depth values
+                    result = line.split()
+                    if (result[1].split("_")[1]=="outputs"):
+                        continue
                     else:
-                        value = math.ceil(float(result[2]))
-                        ntk.Obj(result[1].split("_")[1]).depth =value
-                        ntk.Obj(result[1].split("_")[1]).depth_id =value
-                        #print(result[0].split("_")[1]+" :" +str(value)) #assign depth value to gate
-    cost += len(ntk.splitters)
-    buff_cost+=len(ntk.splitters)
-    buff_cost2+=len(ntk.splitters)
-    buff_cost3+=len(ntk.splitters)
-    return cost, [buff_cost,buff_cost2,buff_cost3,buff_cost4]
+                        if "splitter" in result[1].split("_")[1]: #assign depth value to splitter
+                            value = math.ceil(float(result[2]))
+                            ntk.splitters[ntk.s_dict[result[1].split("_")[1]]].depth=value
+                        else:
+                            value = math.ceil(float(result[2]))
+                            ntk.Obj(result[1].split("_")[1]).depth =value
+                            ntk.Obj(result[1].split("_")[1]).depth_id =value
+                            #print(result[0].split("_")[1]+" :" +str(value)) #assign depth value to gate
+        cost += len(ntk.splitters)
+        buff_cost+=len(ntk.splitters)
+        buff_cost2+=len(ntk.splitters)
+        buff_cost3+=len(ntk.splitters)
+        # return cost, [buff_cost,buff_cost2,buff_cost3,buff_cost4]
+
+    elif Version == 0:
+        sol_file = "problem_sol.txt"  # ntk.name+"_"+str(N)+"_sol.txt"
+        cost = 0
+        buff_cost = 0
+        buff_cost2 = 0
+        buff_cost3 = 0
+        buff_cost4 = 0
+        with open(sol_file, 'r') as sol:
+            for line in sol:
+                if (line.split()[1][0] == "C"):  # calculate cost
+                    result = line.split()
+                    cost += math.ceil(float(result[2]))
+                    buff_cost += math.ceil((math.ceil(float(result[2])) - 1) / 2)
+                    buff_cost2 += math.ceil((math.ceil(float(result[2])) - 1) / 3)
+                    buff_cost3 += math.ceil((math.ceil(float(result[2])) - 1) / 4)
+                    buff_cost4 += math.ceil((math.ceil(float(result[2])) - 1) / 5)
+                if (line.split()[1][0] == "D"):  # store depth values
+                    result = line.split()
+                    if (result[1].split("_")[1] == "outputs"):
+                        continue
+                    else:
+                        if "splitter" in result[1].split("_")[1]:  # assign depth value to splitter
+                            value = math.ceil(float(result[2]))
+                            ntk.splitters[ntk.s_dict[result[1].split("_")[1]]].depth = value
+                        else:
+                            value = math.ceil(float(result[2]))
+                            ntk.Obj(result[1].split("_")[1]).depth = value
+                            ntk.Obj(result[1].split("_")[1]).depth_id = value
+        cost += len(ntk.splitters)
+        buff_cost += len(ntk.splitters)
+        buff_cost2 += len(ntk.splitters)
+        buff_cost3 += len(ntk.splitters)
+    return cost, [buff_cost, buff_cost2, buff_cost3, buff_cost4]
 
 
 
@@ -1058,69 +1094,140 @@ def less(cost,cost_min):
         return True
     else:
         return False
+# def Resolve_Fanouts(ntk,K,init,skip):
+#     Estimated_cost = 0
+#     rt=0
+#     if (init==0):
+#         for n in ntk.netlist:
+#             n.Find_Slack(skip)
+#             #if (n.slack>1):
+#             #    print(n.name)
+#         ntk.deleteSplitters()
+#     for n in ntk.netlist:
+#         if (len(n.fanouts)<=1):
+#             continue
+#         elif(len(n.fanouts)==2):
+#             s_name = "splitterfrom"+n.name
+#             split1 = Node(s_name,"splitter",[n],[0])
+#             ntk.add_splitter(split1)
+#             #print("Made New Splitter "+str(s_name))
+#             split1.connect_splitter(n.fanouts,n)
+#             Estimated_cost+=1
+#         #elif(len(n.fanouts)<=K and init==1):
+#          #   s_name = "splitterfrom"+n.name
+#           #  split1 = Node(s_name,"splitter",[n],[0])
+#            # ntk.add_splitter(split1)
+#             #split1.connect_splitter(n.fanouts,n)
+#             #print("Made New Splitter "+str(s_name))
+#         else:
+#             if (init==2):
+#                 #ntk.deleteTree(n.splitter_out[0])
+#                 ti = time.time()
+#                 pt,delays,N = Build_Tree_init(n,K,skip)
+#
+#                 #pt,delays,N = Build_Tree(n,K,skip)
+#                 #print("Entering Tree for:"+n.name+" with fanouts:")
+#                 #print(delays)
+#                 rt+= time.time()-ti
+#                 Insert_Tree_init(ntk,pt,[0,N-1,0,0],n,n,delays)
+#
+#                 del pt,delays,N
+#                 #print("Exiting with "+str(len(n.fanouts)) + " fanouts")
+#             else:
+#                 ti =time.time()
+#                 pt,dp,delays,N,cost = Build_Tree_init(n,K,skip)
+#                 #print("Tree time for " + str(len(n.fanouts)) + " Fanouts is %s" % (time.time()-ti))
+#                 rt += time.time()-ti
+#                 #print("Entering Tree Init for:"+n.name+" with fanouts:")
+#                 #print(delays)
+#                 Insert_Tree_init(ntk,pt,[0,N-1,0,0],n,n,delays)
+#
+#                 Estimated_cost+=cost[2]
+#                 #if (init==1):
+#                  #   for f in n.fanouts:
+#                   #      f.freeze_ASAP=1
+#                    # for n in ntk.netlist:
+#                     #    n.Find_ASAP()
+#                     #ntk.Fix_outputs()
+#                     #ntk.Set_ALAP()
+#                     #for n in ntk.netlist:
+#                      #   n.depth = n.ASAP
+#                 del pt,dp,delays,N
+#     return rt
+#     #if (init==1):
+#      #   print("Estimated Cost after tree: "+str(Estimated_cost))
+
 def Resolve_Fanouts(ntk,K,init,skip):
+    # print("-------------------------Resolve_Fanouts called------------------------------")
     Estimated_cost = 0
     rt=0
     if (init==0):
         for n in ntk.netlist:
             n.Find_Slack(skip)
-            #if (n.slack>1):
-            #    print(n.name)
         ntk.deleteSplitters()
+    ###--------------------------VERSION0:delete tree upon all------------------------------###
+        # for n in ntk.netlist:
+        #     for s in n.splitter_out:
+        #         ntk.deleteTree(s)
+
+    ###--------------------------VERSION1:50% chance of deletion until reach threshold------------------------------###
+        # num_splitters_threshold = int(0.5*len(ntk.splitters))
+        # for n in ntk.netlist:
+        #     if random.random() < 0.5: # 50% probability
+        #         for s in n.splitter_out:
+        #             ntk.deleteTree(s)
+        #         if len(ntk.splitters) < num_splitters_threshold:
+        #             break
+
+    ###--------------------------VERSION2:random shuffle deletion until reach threshold------------------------------###
+        # num_splitters_threshold = int(0.5 * len(ntk.splitters))
+        # # Shuffle netlist to process nodes in random order
+        # randomized_netlist = random.sample(ntk.netlist, len(ntk.netlist))
+        # for n in randomized_netlist:
+        #     for s in n.splitter_out:
+        #         ntk.deleteTree(s)
+        #     if len(ntk.splitters) < num_splitters_threshold:
+        #         break
+
+    ###--------------------------VERSION3:delete node with fanouts < percentils------------------------------###
+        # fanout_lengths = sorted([len(n.fanouts) for n in ntk.netlist])
+        # fanout_threshold = numpy.percentile(fanout_lengths, 95)
+        # print("fanout_threshold : <= ", fanout_threshold)
+        # # fanout_threshold = 6
+        # for n in ntk.netlist:
+        #     if len(n.fanouts) <= fanout_threshold:
+        #         for s in n.splitter_out:
+        #             ntk.deleteTree(s)
+    elif init == 2:
+        for n in ntk.netlist:
+            n.Find_Slack(skip)
+        fanout_lengths = sorted([len(n.fanouts) for n in ntk.netlist])
+        fanout_threshold = numpy.percentile(fanout_lengths, 95)
+        print("fanout_threshold : > ", fanout_threshold)
+        for n in ntk.netlist:
+            if len(n.fanouts) > fanout_threshold:
+                for s in n.splitter_out:
+                    ntk.deleteTree(s)
+
     for n in ntk.netlist:
-        if (len(n.fanouts)<=1):
-            continue
-        elif(len(n.fanouts)==2):
-            s_name = "splitterfrom"+n.name
-            split1 = Node(s_name,"splitter",[n],[0])
-            ntk.add_splitter(split1)
-            #print("Made New Splitter "+str(s_name))
-            split1.connect_splitter(n.fanouts,n)
-            Estimated_cost+=1
-        #elif(len(n.fanouts)<=K and init==1):
-         #   s_name = "splitterfrom"+n.name
-          #  split1 = Node(s_name,"splitter",[n],[0])
-           # ntk.add_splitter(split1)
-            #split1.connect_splitter(n.fanouts,n)
-            #print("Made New Splitter "+str(s_name))
-        else:
-            if (init==2):
-                #ntk.deleteTree(n.splitter_out[0])
-                ti = time.time()
-                pt,delays,N = Build_Tree_init(n,K,skip)
-                
-                #pt,delays,N = Build_Tree(n,K,skip)
-                #print("Entering Tree for:"+n.name+" with fanouts:")
-                #print(delays)
-                rt+= time.time()-ti
-                Insert_Tree_init(ntk,pt,[0,N-1,0,0],n,n,delays)
-                
-                del pt,delays,N
-                #print("Exiting with "+str(len(n.fanouts)) + " fanouts")
+        if not n.splitter_out:
+            if (len(n.fanouts)<=1):
+                continue
+            elif(len(n.fanouts)==2):
+                s_name = "splitterfrom"+n.name
+                split1 = Node(s_name,"splitter",[n],[0])
+                ntk.add_splitter(split1)
+                split1.connect_splitter(n.fanouts,n)
+                Estimated_cost+=1
             else:
                 ti =time.time()
                 pt,dp,delays,N,cost = Build_Tree_init(n,K,skip)
-                #print("Tree time for " + str(len(n.fanouts)) + " Fanouts is %s" % (time.time()-ti))
                 rt += time.time()-ti
-                #print("Entering Tree Init for:"+n.name+" with fanouts:")
-                #print(delays)
                 Insert_Tree_init(ntk,pt,[0,N-1,0,0],n,n,delays)
-                
                 Estimated_cost+=cost[2]
-                #if (init==1):
-                 #   for f in n.fanouts:
-                  #      f.freeze_ASAP=1
-                   # for n in ntk.netlist:
-                    #    n.Find_ASAP()
-                    #ntk.Fix_outputs()
-                    #ntk.Set_ALAP()
-                    #for n in ntk.netlist:
-                     #   n.depth = n.ASAP
                 del pt,dp,delays,N
     return rt
-    #if (init==1):
-     #   print("Estimated Cost after tree: "+str(Estimated_cost))
-            
+
 def Build_Tree_init(node,X,phase_skips):
     delays=[]
     N = 0
@@ -1375,7 +1482,7 @@ def Insert_Buffers(ntk,N,flag,Version):
                             buf.depth = value
 
     elif Version == 0:
-        sol_file = "../problem_sol.txt"  # ntk.name+"_"+str(N)+"_sol.txt"
+        sol_file = "problem_sol.txt"  # ntk.name+"_"+str(N)+"_sol.txt"
         with open(sol_file, 'r') as sol:
             for line in sol:
                 if (line.split()[1][0] == "C"):  # calculate cost
@@ -1422,39 +1529,25 @@ def Algorithm(name,fanout,phase_skips,phases):
         if (n.gate_type!="PO" and n.gate_type!="PI"):
             gate_count+=1
     print("Parsed Circuit " +name+" has gate count "+str(gate_count))
-    #circ = circuit
-    #print("avlie")
+    version = 0
     phase_time +=Formulate_init_CPLEX(circ,phase_skips,fanout)
-    #print("Total Time: %s seconds " % (phase_time))
-    #Formulate_CPLEX(circ,phase_skips)
-
-    best_cost,buff_cost =Read_Solution_CPLEX(circ,phase_skips)
-
-    #for n in circ.netlist:
-    #    n.Find_Slack(phase_skips)
-    #print("Estimated Cost: "+str(best_cost))
-    ######I dont think these were used?? circ.Fix_outputs()
-    ######circ.Set_ALAP()
+    best_cost,buff_cost =Read_Solution_CPLEX(circ,phase_skips, version)
     circ.phases = phases
-    #print("Init Trees")
     tree_time+=Resolve_Fanouts(circ,fanout,1,phase_skips)
+
     circ.Find_maxDepth()
     Loutputs = math.ceil(circ.maxDepth) + 1
-    # Loutputs = 38
     print(f"Loutputs: {Loutputs}")
-#    Loutputs = 41
-    version = 0
-    #print("Tree time: %s seconds " % (tree_time))
-    #return pt,dp
-    #print(len(circ.splitters))
+
+    cost = 0
+    iteration = 1
+    saved = []
+
     phase_time+=Formulate_CPLEX(circ,phase_skips,Loutputs, version)
     for n in circ.netlist:
         n.Find_Slack(phase_skips)
     #print("Reading Solution")
-    best_cost,buff_cost =Read_Solution_CPLEX(circ,phase_skips)
-    cost = 0
-    iteration = 1
-    saved=[]
+    best_cost,buff_cost =Read_Solution_CPLEX(circ,phase_skips,version)
     #print("Chain Retiming Cost ="+str(buff_cost))
     print("Initial Cost: "+str(best_cost))
     if (phase_skips==1):
@@ -1465,45 +1558,7 @@ def Algorithm(name,fanout,phase_skips,phases):
         tree_time+=Resolve_Fanouts(circ,fanout,0,phase_skips)
         #print(len(circ.splitters))
         phase_time+=Formulate_CPLEX(circ,phase_skips, Loutputs, version)
-        cost,buff_cost = Read_Solution_CPLEX(circ,phase_skips)
-        iteration+=1
-        if (cost<best_cost):
-            best_cost = cost
-            cost = 0
-            print("Iteration "+str(iteration)+": "+str(best_cost))
-        else:
-            print("No Improvement Found in Iteration "+str(iteration) + " at cost "+str(cost))
-            # circ.CleanNtk()
-            #print("Inserting Buffers")
-            # saved = buff_cost
-            # Insert_Buffers(circ,phase_skips,"C", version)
-            # Insert_Buffers(circ,phase_skips,"D", version)
-
-    version = 1
-    cost = 0
-    best_cost = math.inf
-
-    # for n in circ.netlist:
-    #     n.Find_Slack(phase_skips)
-    # tree_time+=Resolve_Fanouts(circ,fanout,0,phase_skips)
-    # #print(len(circ.splitters))
-    # phase_time+=Formulate_CPLEX(circ,phase_skips, Loutputs, version)
-    # cost,buff_cost = Read_Solution_CPLEX(circ,phase_skips)
-    # iteration+=1
-    #
-    # best_cost = cost
-    # print("Iteration "+str(iteration)+": "+str(best_cost))
-    # circ.CleanNtk()
-    # Insert_Buffers(circ,phase_skips,"C", version)
-    # Insert_Buffers(circ,phase_skips,"D", version)
-
-    while (cost<best_cost):
-        for n in circ.netlist:
-            n.Find_Slack(phase_skips)
-        tree_time+=Resolve_Fanouts(circ,fanout,0,phase_skips)
-        #print(len(circ.splitters))
-        phase_time+=Formulate_CPLEX(circ,phase_skips, Loutputs, version)
-        cost,buff_cost = Read_Solution_CPLEX(circ,phase_skips)
+        cost,buff_cost = Read_Solution_CPLEX(circ,phase_skips,version)
         iteration+=1
         if (cost<best_cost):
             best_cost = cost
@@ -1512,22 +1567,37 @@ def Algorithm(name,fanout,phase_skips,phases):
         else:
             print("No Improvement Found in Iteration "+str(iteration) + " at cost "+str(cost))
             circ.CleanNtk()
-            #print("Inserting Buffers")
+            print("Inserting Buffers")
             saved = buff_cost
             Insert_Buffers(circ,phase_skips,"C", version)
-            Insert_Buffers(circ,phase_skips,"D", version)
+    circ_copy = circ
 
-    #print("Best Cost Found is: "+str(best_cost))
+    version = 1
+
+    for n in circ.netlist:
+        n.Find_Slack(phase_skips)
+    tree_time+=Resolve_Fanouts(circ,fanout,0,phase_skips)
+    #print(len(circ.splitters))
+    phase_time+=Formulate_CPLEX(circ,phase_skips, Loutputs, version)
+    cost,buff_cost = Read_Solution_CPLEX(circ,phase_skips,version)
+    saved = buff_cost
+    iteration+=1
+
+    # # best_cost = cost
+    # if best_cost < cost:
+    #     circ = circ_copy
+    #     print("New version algorithm make no improvement, old version result retained, cost: " + str(best_cost))
+    print("Iteration "+str(iteration)+": "+str(best_cost))
+    circ.CleanNtk()
+    Insert_Buffers(circ,phase_skips,"C", version)
+    Insert_Buffers(circ,phase_skips,"D", version)
+
+    print("Best Cost Found is: "+str(best_cost))
     circ.set_phases()
-    netlist_name = name+"_"+str(phases)+"phases_"+str(phase_skips-1)+"_netlist.v"
-    Gen_Netlist(netlist_name,circ,phases)
+    # netlist_name = name+"_"+str(phases)+"phases_"+str(phase_skips-1)+"_netlist.v"
+    # Gen_Netlist(netlist_name,circ,phases)
     #print("Generated Netlist: "+netlist_name)
     test =circ.verify(phase_skips)
-    # print("n10 node info: \n")
-    # print(circ.Obj('n10'))
-    # print(circ.Obj('n10').depth)
-    # for gate in circ.netlist + circ.splitters:
-    #     print("name: "+ gate.name + "; depth: " + str(gate.depth))
     print("Total Time: %s seconds " % (time.time()-start_time))
     print("Time in phase assignment %s " % (phase_time))
     print("Time in tree construction %s " % (tree_time))
@@ -1539,7 +1609,7 @@ def Run_Benchmarks():
     Phase4=[]
     NPhase=[]
     
-    circuit = "c2670"
+    circuit = "counter128"
     # circ4,cost4,s1,s2,s3,s4 = Algorithm(circuit,4,2,8)
     circ4,cost4,s1,s2,s3,s4 = Algorithm(circuit,4,1,4)
     Phase4.append((cost4,circuit,s1,s2,s3,s4))

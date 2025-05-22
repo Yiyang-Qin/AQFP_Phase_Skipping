@@ -1,5 +1,5 @@
-#include "../../../opt/ibm/ILOG/CPLEX_Studio221/concert/include/ilconcert/ilomodel.h"
-#include "../../../opt/ibm/ILOG/CPLEX_Studio221/cplex/include/ilcplex/ilocplex.h"
+#include "/opt/ibm/ILOG/CPLEX_Studio2211/concert/include/ilconcert/ilomodel.h"
+#include "/opt/ibm/ILOG/CPLEX_Studio2211/cplex/include/ilcplex/ilocplex.h"
 #include <math.h>
 #include <stdint.h>
 #include <time.h>
@@ -38,7 +38,7 @@ std::string fileName_ = std::string("problem.lp");
 
         cplex.extract(model);
         // add time limit
-        int timeLimit = 600; // in seconds
+        int timeLimit = 1800; // in seconds
         cplex.setParam(IloCplex::TiLim, timeLimit);	
         time(&begin);
         if ( !cplex.solve() ) {
